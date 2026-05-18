@@ -39,7 +39,7 @@ export class HeroSection {
   slides = [
     {
       id: 1,
-      image: '/assets/images/hero/image.png',
+      image: '/assets/images/hero/image.webp',
       subtitle: 'HERO.CHOOSE_PATH',
       title: 'Experience Japanese Excellence',
       description: 'Discover a world of fresh flavors and artisan sushi crafted with passion.',
@@ -47,7 +47,7 @@ export class HeroSection {
     },
     {
       id: 2,
-      image: '/assets/images/about/image.png',
+      image: '/assets/images/about/image.webp',
       subtitle: 'HERO.SLOGAN',
       title: 'Freshly Prepared Every Day',
       description: 'From our kitchen to your table, we guarantee the highest quality ingredients.',
