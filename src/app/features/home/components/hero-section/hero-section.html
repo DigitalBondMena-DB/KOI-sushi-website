@@ -7,7 +7,7 @@
           <img
             [ngSrc]="slide.image"
             [alt]="slide.title"
-            [priority]="$index === 0"
+            priority
             [decoding]="$index > 0 ? 'async' : 'sync'"
             fill
             class="absolute inset-0 size-full object-cover"

@@ -38,7 +38,7 @@ export class HeroSection {
   }));
   slides = [
     {
-      id: '1',
+      id: 1,
       image: '/assets/images/hero/image.png',
       subtitle: 'HERO.CHOOSE_PATH',
       title: 'Experience Japanese Excellence',
@@ -46,7 +46,7 @@ export class HeroSection {
       link: '/menu',
     },
     {
-      id: '2',
+      id: 2,
       image: '/assets/images/about/image.png',
       subtitle: 'HERO.SLOGAN',
       title: 'Freshly Prepared Every Day',
