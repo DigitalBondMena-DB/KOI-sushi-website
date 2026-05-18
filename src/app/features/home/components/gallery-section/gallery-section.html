@@ -1,0 +1,30 @@
+<section class="py-24 bg-dark">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row text-white items-end justify-between mb-16 gap-6">
+      <app-main-header
+        [mainTitle]="'Our Gallery'"
+        [subTitle]="'Visual Feast'"
+        [textAlign]="'start'"
+      />
+      <p class="text-light/50 max-w-sm mb-2">
+        A glimpse into the art of sushi making and our vibrant atmosphere.
+      </p>
+    </div>
+
+    <owl-carousel-o [options]="galleryOptions()">
+      @for (img of galleryImages; track img) {
+        <ng-template carouselSlide>
+          <div class="aspect-4/5 rounded-2xl overflow-hidden mx-2">
+            <img
+              [src]="img"
+              loading="lazy"
+              decoding="async"
+              alt="Gallery Image"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>

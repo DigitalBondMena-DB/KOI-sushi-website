@@ -1,0 +1,16 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "MENU": "Menu",
+    "BRANCHES": "Branches",
+    "CONTACT": "Contact Us"
+  },
+  "HERO": {
+    "CHOOSE_PATH": "Choose the path",
+    "SLOGAN": "Sushi always part of the plan"
+  },
+  "HOME": {
+    "ORDER_NOW": "Order Now"
+  }
+}
