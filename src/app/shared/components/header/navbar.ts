@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, Menu, X, Globe } from 'lucide-angular';
@@ -7,33 +7,32 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule, LucideAngularModule],
   templateUrl: './navbar.html',
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-    `,
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
   readonly langService = inject(LanguageService);
-  isMenuOpen = false;
-
-  readonly globeIcon = Globe;
-  readonly menuIcon = Menu;
-  readonly xIcon = X;
-
-  get navItems() {
-    const lang = this.langService.currentLang();
+  currentLang = computed(() => this.langService.currentLang());
+  isMenuOpen = signal(false);
+  readonly icons = {
+    globe: Globe,
+    menu: Menu,
+    x: X,
+  };
+  toggleMobileMenu(): void {
+    this.isMenuOpen.update((value) => !value);
+  }
+  closeMobileMenu(): void {
+    this.isMenuOpen.set(false);
+  }
+  navItems = computed(() => {
+    const lang = this.currentLang();
     return [
       { label: 'NAV.HOME', path: `/${lang}` },
       { label: 'NAV.ABOUT', path: `/${lang}/about` },
       { label: 'NAV.MENU', path: `/${lang}/menu` },
       { label: 'NAV.BRANCHES', path: `/${lang}/branches` },
-      // { label: 'NAV.CONTACT', path: `/${lang}/contact` }
     ];
-  }
+  });
 }

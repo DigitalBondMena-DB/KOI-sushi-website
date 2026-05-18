@@ -1,9 +1,6 @@
 <div class="pt-24 pb-24 bg-light min-h-screen">
   <div class="container mx-auto px-4">
-    <!-- Header -->
-
     <app-main-header mainTitle="Find Us Near You" subTitle="Our Locations" />
-
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       @for (branch of branches; track branch.id) {
         <div
@@ -12,7 +9,7 @@
           <!-- Map Section -->
           <div class="md:w-1/2 h-[300px] md:h-auto overflow-hidden relative">
             <iframe
-              [src]="branch.mapUrl"
+              [src]="this.sanitizer.bypassSecurityTrustResourceUrl(branch?.mapUrl ?? '')"
               class="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
               style="border: 0"
               allowfullscreen

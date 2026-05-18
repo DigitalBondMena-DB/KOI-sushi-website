@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-main-header',
@@ -8,6 +8,7 @@ import { Component, input } from '@angular/core';
       <h3 class="text-4xl md:text-5xl font-bold">{{ mainTitle() }}</h3>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainHeader {
   mainTitle = input.required<string>();

@@ -1,7 +1,7 @@
 <nav class="fixed top-0 left-0 w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10">
-  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+  <div class="container mx-auto py-3 flex items-center justify-between">
     <!-- Logo -->
-    <a [routerLink]="'/' + langService.currentLang()" class="flex items-center space-x-2 group">
+    <a [routerLink]="'/' + currentLang()" class="flex items-center gap-2 group">
       <img
         src="assets/images/koi-logo.jpg"
         alt="KOI Logo"
@@ -12,8 +12,8 @@
     </a>
 
     <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-      @for (item of navItems; track item.path) {
+    <div class="hidden md:flex items-center gap-8">
+      @for (item of navItems(); track item.path) {
         <a
           [routerLink]="item.path"
           routerLinkActive="text-primary"
@@ -26,49 +26,47 @@
     </div>
 
     <!-- Actions -->
-    <div class="flex items-center space-x-4 rtl:space-x-reverse">
+    <div class="flex items-center gap-4">
       <!-- Language Toggle -->
       <button
         (click)="langService.toggleLanguage()"
-        class="flex items-center space-x-1 text-light hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
+        class="flex items-center gap-1 text-light hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
       >
-        <lucide-icon [name]="globeIcon" class="w-5 h-5"></lucide-icon>
-        <span class="text-xs font-bold">{{
-          langService.currentLang() === 'en' ? 'AR' : 'EN'
-        }}</span>
+        <lucide-icon [name]="icons.globe" size="20"></lucide-icon>
+        <span class="text-xs font-bold">{{ currentLang() === 'en' ? 'AR' : 'EN' }}</span>
       </button>
 
       <!-- Contact/Phone -->
       <a
-        [routerLink]="'/' + langService.currentLang() + '/contact'"
-        class="hidden sm:flex items-center space-x-2 bg-primary text-light px-4 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20"
+        [routerLink]="'/' + currentLang() + '/contact'"
+        class="hidden sm:flex items-center gap-2 bg-primary text-light px-4 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-[background-color,box-shadow] hover:shadow-lg hover:shadow-primary/20"
       >
         <span>Contact Us</span>
       </a>
 
       <!-- Mobile Toggle -->
-      <button (click)="isMenuOpen = !isMenuOpen" class="md:hidden text-light p-2">
-        <lucide-icon [name]="isMenuOpen ? xIcon : menuIcon" class="w-6 h-6"></lucide-icon>
+      <button (click)="toggleMobileMenu()" class="md:hidden text-light p-2">
+        <lucide-icon [name]="isMenuOpen() ? icons.x : icons.menu" class="w-6 h-6"></lucide-icon>
       </button>
     </div>
   </div>
 
   <!-- Mobile Menu -->
-  @if (isMenuOpen) {
+  @if (isMenuOpen()) {
     <div class="md:hidden bg-dark border-t border-white/10 animate-fade-in">
-      <div class="flex flex-col space-y-4 p-6">
-        @for (item of navItems; track item.path) {
+      <div class="flex flex-col gap-4 p-6">
+        @for (item of navItems(); track item.path) {
           <a
             [routerLink]="item.path"
-            (click)="isMenuOpen = false"
+            (click)="closeMobileMenu()"
             class="text-light hover:text-primary transition-colors text-lg font-bold uppercase"
           >
             {{ item.label | translate }}
           </a>
         }
         <a
-          [routerLink]="'/' + langService.currentLang() + '/contact'"
-          class="flex items-center space-x-2 text-primary font-bold"
+          [routerLink]="'/' + currentLang() + '/contact'"
+          class="flex items-center gap-2 text-primary font-bold"
         >
           <span>{{ 'NAV.CONTACT' | translate }}</span>
         </a>

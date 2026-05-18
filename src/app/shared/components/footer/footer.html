@@ -1,9 +1,18 @@
 <!-- Footer -->
 <footer class="bg-dark text-light py-20 border-t border-white/5">
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
       <div class="col-span-1 md:col-span-1 space-y-6">
-        <img src="assets/logo.png" alt="KOI Logo" class="h-12 w-auto brightness-0 invert" />
+        <a [routerLink]="'/' + currentLang()">
+          <img
+            src="assets/images/koi-logo.jpg"
+            alt="KOI Sushi"
+            loading="lazy"
+            decoding="async"
+            width="48"
+            height="48"
+          />
+        </a>
         <p class="text-light/50 leading-relaxed">
           The art of sushi, delivered with passion. Experience the freshest ingredients and
           innovative flavors at KOI Sushi Bar.
@@ -13,79 +22,50 @@
       <div class="space-y-6">
         <h4 class="text-xl font-bold uppercase tracking-widest text-primary">Quick Links</h4>
         <ul class="space-y-4 text-light/60">
-          <li>
-            <a
-              [routerLink]="'/' + langService.currentLang()"
-              class="hover:text-primary transition-colors"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              [routerLink]="'/' + langService.currentLang() + '/about'"
-              class="hover:text-primary transition-colors"
-              >About Us</a
-            >
-          </li>
-          <li>
-            <a
-              [routerLink]="'/' + langService.currentLang() + '/menu'"
-              class="hover:text-primary transition-colors"
-              >Our Menu</a
-            >
-          </li>
-          <li>
-            <a
-              [routerLink]="'/' + langService.currentLang() + '/branches'"
-              class="hover:text-primary transition-colors"
-              >Branches</a
-            >
-          </li>
+          @for (item of quickLinks(); track item.path) {
+            <li>
+              <a [routerLink]="item.path" class="hover:text-primary transition-colors">{{
+                item.label
+              }}</a>
+            </li>
+          }
         </ul>
       </div>
 
       <div class="space-y-6">
         <h4 class="text-xl font-bold uppercase tracking-widest text-primary">Support</h4>
         <ul class="space-y-4 text-light/60">
-          <li>
-            <a
-              [routerLink]="'/' + langService.currentLang() + '/contact'"
-              class="hover:text-primary transition-colors"
-              >Contact Us</a
-            >
-          </li>
-          <li>
-            <a
-              [routerLink]="'/' + langService.currentLang() + '/privacy'"
-              class="hover:text-primary transition-colors"
-              >Privacy Policy</a
-            >
-          </li>
-          <li><a href="#" class="hover:text-primary transition-colors">Terms of Service</a></li>
+          @for (item of supportLinks(); track item.path) {
+            <li>
+              <a [routerLink]="item.path" class="hover:text-primary transition-colors">{{
+                item.label
+              }}</a>
+            </li>
+          }
         </ul>
       </div>
 
       <div class="space-y-6">
         <h4 class="text-xl font-bold uppercase tracking-widest text-primary">Follow Us</h4>
         <div class="flex space-x-4">
-          <a
-            href="#"
-            class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-all"
-          >
-            <span class="text-xs">FB</span>
-          </a>
-          <a
-            href="#"
-            class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-all"
-          >
-            <span class="text-xs">IG</span>
-          </a>
-          <a
-            href="#"
-            class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-all"
-          >
-            <span class="text-xs">TT</span>
-          </a>
+          @for (item of socialMediaLinks; track item.name) {
+            <a
+              [href]="item.url"
+              [title]="item.name"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-all"
+            >
+              <img
+                [src]="item.icon"
+                [alt]="item.name"
+                width="16"
+                height="16"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          }
         </div>
       </div>
     </div>
