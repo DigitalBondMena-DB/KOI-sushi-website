@@ -39,8 +39,7 @@ export class HeroSection {
   slides = [
     {
       id: '1',
-      image:
-        'https://images.unsplash.com/photo-1559466273-d95e72debaf8?q=80&w=1000&auto=format&fit=crop',
+      image: '/assets/images/hero/image.png',
       subtitle: 'HERO.CHOOSE_PATH',
       title: 'Experience Japanese Excellence',
       description: 'Discover a world of fresh flavors and artisan sushi crafted with passion.',
@@ -48,8 +47,7 @@ export class HeroSection {
     },
     {
       id: '2',
-      image:
-        'https://images.unsplash.com/photo-1559466273-d95e72debaf8?q=80&w=1000&auto=format&fit=crop',
+      image: '/assets/images/about/image.png',
       subtitle: 'HERO.SLOGAN',
       title: 'Freshly Prepared Every Day',
       description: 'From our kitchen to your table, we guarantee the highest quality ingredients.',

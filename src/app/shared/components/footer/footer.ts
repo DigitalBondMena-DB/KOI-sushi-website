@@ -12,8 +12,8 @@ export class Footer {
   readonly langService = inject(LanguageService);
   readonly socialMediaLinks = [
     { name: 'facebook', url: '#', icon: 'assets/icons/facebook.svg' },
-    { name: 'instagram', url: '#', icon: 'assets/icons/instagram.svg' },
-    { name: 'tiktok', url: '#', icon: 'assets/icons/tiktok.svg' },
+    { name: 'instagram', url: '#', icon: 'assets/icons/facebook.svg' },
+    { name: 'tiktok', url: '#', icon: 'assets/icons/facebook.svg' },
   ];
   currentLang = computed(() => this.langService.currentLang());
   quickLinks = computed(() => {
