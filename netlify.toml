@@ -1,5 +1,5 @@
 [build]
-  command = "ng build"
+  command = "ng build -c production"
   publish = "dist/koi-sushi/browser"
 
 [[plugins]]
