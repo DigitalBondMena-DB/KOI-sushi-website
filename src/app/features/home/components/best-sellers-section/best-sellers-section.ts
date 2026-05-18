@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MainHeader } from '../../../../shared/components/main-header/main-header';
 
 @Component({
   selector: 'app-best-sellers-section',
   templateUrl: './best-sellers-section.html',
   imports: [MainHeader],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BestSellersSection {
   bestSellers = [
