@@ -1,10 +1,6 @@
-import {
-  ApplicationConfig,
-  provideBrowserGlobalErrorListeners,
-  importProvidersFrom,
-} from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { TranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader, provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -14,7 +10,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(withFetch()),
     provideClientHydration(withEventReplay()),
     provideTranslateService({
