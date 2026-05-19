@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { inject } from '@angular/core';
 import { LanguageService } from './core/services/language.service';
 import { langGuard } from './core/guards/lang.guard';
+import { HomeComponent } from './features/home/home';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./features/home/home').then((m) => m.HomeComponent),
+        component: HomeComponent,
       },
       {
         path: 'about',
