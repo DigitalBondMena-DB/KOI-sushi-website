@@ -6,10 +6,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 
 @Component({
   selector: 'app-contact',
-  standalone: true,
   imports: [CommonModule, TranslateModule, LucideAngularModule, ReactiveFormsModule],
   template: `
-    <div class="pt-24 pb-24 bg-light min-h-screen">
+    <div class="pt-24 pb-16 bg-light">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -23,7 +22,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 
               <div class="space-y-6">
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                  <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5">
+                  <div
+                    class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
+                  >
                     <lucide-icon [name]="phoneIcon" class="w-6 h-6"></lucide-icon>
                   </div>
                   <div>
@@ -33,7 +34,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                 </div>
 
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                  <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5">
+                  <div
+                    class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
+                  >
                     <lucide-icon [name]="mailIcon" class="w-6 h-6"></lucide-icon>
                   </div>
                   <div>
@@ -43,7 +46,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                 </div>
 
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                  <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5">
+                  <div
+                    class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
+                  >
                     <lucide-icon [name]="mapPinIcon" class="w-6 h-6"></lucide-icon>
                   </div>
                   <div>
@@ -55,30 +60,56 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
             </div>
 
             <!-- Contact Form -->
-            <div class="lg:col-span-2 bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-dark/5 border border-dark/5">
+            <div
+              class="lg:col-span-2 bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-dark/5 border border-dark/5"
+            >
               <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div class="space-y-2">
                     <label class="text-sm font-bold text-dark/60 ml-2">Full Name</label>
-                    <input type="text" formControlName="name" class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all" placeholder="John Doe">
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
+                      placeholder="John Doe"
+                    />
                   </div>
                   <div class="space-y-2">
                     <label class="text-sm font-bold text-dark/60 ml-2">Email Address</label>
-                    <input type="email" formControlName="email" class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all" placeholder="john&#64;example.com">
+                    <input
+                      type="email"
+                      formControlName="email"
+                      class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
+                      placeholder="john&#64;example.com"
+                    />
                   </div>
                 </div>
 
                 <div class="space-y-2">
                   <label class="text-sm font-bold text-dark/60 ml-2">Subject</label>
-                  <input type="text" formControlName="subject" class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all" placeholder="How can we help?">
+                  <input
+                    type="text"
+                    formControlName="subject"
+                    class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
+                    placeholder="How can we help?"
+                  />
                 </div>
 
                 <div class="space-y-2">
                   <label class="text-sm font-bold text-dark/60 ml-2">Message</label>
-                  <textarea formControlName="message" rows="5" class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Write your message here..."></textarea>
+                  <textarea
+                    formControlName="message"
+                    rows="5"
+                    class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
+                    placeholder="Write your message here..."
+                  ></textarea>
                 </div>
 
-                <button type="submit" [disabled]="contactForm.invalid" class="w-full md:w-auto bg-primary text-light px-12 py-4 rounded-2xl font-bold hover:bg-primary/90 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                <button
+                  type="submit"
+                  [disabled]="contactForm.invalid"
+                  class="w-full md:w-auto bg-primary text-light px-12 py-4 rounded-2xl font-bold hover:bg-primary/90 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
                   <span>Send Message</span>
                   <lucide-icon [name]="sendIcon" class="w-5 h-5"></lucide-icon>
                 </button>
@@ -88,7 +119,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class ContactComponent {
   readonly phoneIcon = Phone;
@@ -103,7 +134,7 @@ export class ContactComponent {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
-      message: ['', Validators.required]
+      message: ['', Validators.required],
     });
   }
 

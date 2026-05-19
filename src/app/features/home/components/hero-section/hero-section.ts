@@ -1,41 +1,31 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { LanguageService } from '../../../../core/services/language.service';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 import { ArrowRight, LucideAngularModule } from 'lucide-angular';
-import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [TranslatePipe, RouterLink, LucideAngularModule, CarouselModule, NgOptimizedImage],
+  imports: [TranslatePipe, RouterLink, LucideAngularModule, NgOptimizedImage],
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HeroSection {
   readonly langService = inject(LanguageService);
   readonly arrowIcon = ArrowRight;
 
-  customOptions = computed<OwlOptions>(() => ({
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    rtl: this.langService.currentLang() === 'ar',
-    pullDrag: false,
-    dots: true,
-    navSpeed: 700,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    nav: false,
-    items: 1,
-    responsive: {
-      0: {
-        items: 1,
-      },
-    },
-    animateOut: 'fadeOut',
-  }));
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+    if (isPlatformBrowser(platformId)) {
+      import('swiper/element/bundle').then(({ register }) => {
+        register();
+      });
+    }
+  }
+
   slides = [
     {
       id: 1,

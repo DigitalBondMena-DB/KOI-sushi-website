@@ -1,32 +1,26 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { LanguageService } from '../../../../core/services/language.service';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { MainHeader } from '../../../../shared/components/main-header/main-header';
 
 @Component({
   selector: 'app-gallery-section',
-  imports: [CarouselModule, MainHeader],
+  imports: [MainHeader],
   templateUrl: './gallery-section.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GallerySection {
   readonly langService = inject(LanguageService);
 
-  galleryOptions = computed<OwlOptions>(() => ({
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    dots: false,
-    rtl: this.langService.isRtl(),
-    nav: false,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    responsive: {
-      0: { items: 2 },
-      768: { items: 4 },
-      1200: { items: 5 },
-    },
-  }));
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+    if (isPlatformBrowser(platformId)) {
+      import('swiper/element/bundle').then(({ register }) => {
+        register();
+      });
+    }
+  }
 
   galleryImages = [
     'https://images.unsplash.com/photo-1582450871972-ab5ca641643d?q=80&w=1000&auto=format&fit=crop',

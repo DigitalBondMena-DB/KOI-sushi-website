@@ -1,7 +1,17 @@
 <section class="relative h-screen min-h-[600px] overflow-hidden">
-  <owl-carousel-o [options]="customOptions()">
+  <swiper-container
+    [attr.dir]="langService.currentLang() === 'ar' ? 'rtl' : 'ltr'"
+    loop="true"
+    pagination="true"
+    pagination-clickable="true"
+    autoplay-delay="5000"
+    autoplay-disable-on-interaction="false"
+    speed="700"
+    effect="fade"
+    class="w-full h-full theme-light-bullets"
+  >
     @for (slide of slides; track slide.id) {
-      <ng-template carouselSlide>
+      <swiper-slide>
         <div class="relative h-screen w-full cursor-grab">
           <!-- Background Image -->
           <img
@@ -44,7 +54,7 @@
             </div>
           </div>
         </div>
-      </ng-template>
+      </swiper-slide>
     }
-  </owl-carousel-o>
+  </swiper-container>
 </section>

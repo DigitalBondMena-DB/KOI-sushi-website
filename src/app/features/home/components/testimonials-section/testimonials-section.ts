@@ -1,33 +1,27 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { LanguageService } from '../../../../core/services/language.service';
 import { MainHeader } from '../../../../shared/components/main-header/main-header';
 
 @Component({
   selector: 'app-testimonials-section',
-  imports: [CarouselModule, MainHeader],
+  imports: [MainHeader],
   templateUrl: './testimonials-section.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TestimonialsSection {
-  private readonly langService = inject(LanguageService);
+  readonly langService = inject(LanguageService);
 
-  readonly options = computed<OwlOptions>(() => ({
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    rtl: this.langService.isRtl(),
-    dots: true,
-    navSpeed: 700,
-    margin: 20,
-    responsive: {
-      0: { items: 1 },
-      768: { items: 2 },
-      1200: { items: 3 },
-    },
-  }));
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+    if (isPlatformBrowser(platformId)) {
+      import('swiper/element/bundle').then(({ register }) => {
+        register();
+      });
+    }
+  }
+
   reviews = [
     { id: 1, name: 'John Smith', message: 'Best sushi in town! The freshness is unparalleled.' },
     {
@@ -41,19 +35,4 @@ export class TestimonialsSection {
       message: 'Quick service and very professional staff. Highly recommended.',
     },
   ];
-  reviewOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    rtl: true,
-    dots: true,
-    navSpeed: 700,
-    margin: 20,
-    responsive: {
-      0: { items: 1 },
-      768: { items: 2 },
-      1200: { items: 3 },
-    },
-  };
 }

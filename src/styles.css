@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
-
 @theme {
   --color-primary: #e94c3c;
   --color-light: #fdfdfd;
@@ -48,3 +47,28 @@
     @apply font-script;
   }
 }
+
+/* Global Swiper styles */
+swiper-container::part(bullet) {
+  background: rgba(0, 0, 0, 0.2);
+  width: 10px;
+  height: 10px;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+swiper-container::part(bullet-active) {
+  background: var(--color-primary, #e94c3c);
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* Dark background slides (bullets styling) */
+swiper-container.theme-light-bullets::part(bullet) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+swiper-container.theme-light-bullets::part(bullet-active) {
+  background: var(--color-primary, #e94c3c);
+}
+

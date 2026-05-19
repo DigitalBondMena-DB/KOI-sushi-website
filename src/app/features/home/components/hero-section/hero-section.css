@@ -1,16 +1,4 @@
-:host ::ng-deep .owl-theme .owl-dots {
-  position: absolute;
+swiper-container::part(pagination) {
   bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
 }
-:host ::ng-deep .owl-theme .owl-dots .owl-dot span {
-  background: rgba(255, 255, 255, 0.3);
-  width: 12px;
-  height: 12px;
-  transition: all 0.3s;
-}
-:host ::ng-deep .owl-theme .owl-dots .owl-dot.active span {
-  background: #e94c3c;
-  width: 30px;
-}
+

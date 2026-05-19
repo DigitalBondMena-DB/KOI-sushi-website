@@ -11,9 +11,18 @@
       </p>
     </div>
 
-    <owl-carousel-o [options]="galleryOptions()">
+    <swiper-container
+      [attr.dir]="langService.isRtl() ? 'rtl' : 'ltr'"
+      loop="true"
+      slides-per-view="2"
+      space-between="16"
+      autoplay-delay="3000"
+      autoplay-disable-on-interaction="false"
+      breakpoints='{"768": {"slidesPerView": 4}, "1200": {"slidesPerView": 5}}'
+      class="w-full"
+    >
       @for (img of galleryImages; track img) {
-        <ng-template carouselSlide>
+        <swiper-slide>
           <div class="aspect-4/5 rounded-2xl overflow-hidden mx-2">
             <img
               [src]="img"
@@ -23,8 +32,8 @@
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
           </div>
-        </ng-template>
+        </swiper-slide>
       }
-    </owl-carousel-o>
+    </swiper-container>
   </div>
 </section>
