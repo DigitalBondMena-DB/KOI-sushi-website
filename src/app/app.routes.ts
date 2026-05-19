@@ -6,7 +6,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: ':lang',
+    redirectTo: '/en',
   },
   {
     path: ':lang',
@@ -41,6 +41,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ':lang',
+    redirectTo: '/en',
   },
 ];
