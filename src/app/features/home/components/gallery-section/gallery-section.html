@@ -21,7 +21,7 @@
       breakpoints='{"768": {"slidesPerView": 4}, "1200": {"slidesPerView": 5}}'
       class="w-full"
     >
-      @for (img of galleryImages; track img) {
+      @for (img of galleryImages; track $index) {
         <swiper-slide>
           <div class="aspect-4/5 rounded-2xl overflow-hidden mx-2">
             <img

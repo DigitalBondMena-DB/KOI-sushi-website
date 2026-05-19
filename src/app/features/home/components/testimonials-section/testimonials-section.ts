@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { LanguageService } from '../../../../core/services/language.service';
 import { MainHeader } from '../../../../shared/components/main-header/main-header';
 
@@ -13,15 +12,6 @@ import { MainHeader } from '../../../../shared/components/main-header/main-heade
 export class TestimonialsSection {
   readonly langService = inject(LanguageService);
 
-  constructor() {
-    const platformId = inject(PLATFORM_ID);
-    if (isPlatformBrowser(platformId)) {
-      import('swiper/element/bundle').then(({ register }) => {
-        register();
-      });
-    }
-  }
-
   reviews = [
     { id: 1, name: 'John Smith', message: 'Best sushi in town! The freshness is unparalleled.' },
     {
@@ -31,6 +21,16 @@ export class TestimonialsSection {
     },
     {
       id: 3,
+      name: 'Michael Chen',
+      message: 'Quick service and very professional staff. Highly recommended.',
+    },
+    {
+      id: 4,
+      name: 'Michael Chen',
+      message: 'Quick service and very professional staff. Highly recommended.',
+    },
+    {
+      id: 5,
       name: 'Michael Chen',
       message: 'Quick service and very professional staff. Highly recommended.',
     },

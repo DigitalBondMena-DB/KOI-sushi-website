@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { LanguageService } from '../../../../core/services/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
@@ -16,15 +16,6 @@ import { ArrowRight, LucideAngularModule } from 'lucide-angular';
 export class HeroSection {
   readonly langService = inject(LanguageService);
   readonly arrowIcon = ArrowRight;
-
-  constructor() {
-    const platformId = inject(PLATFORM_ID);
-    if (isPlatformBrowser(platformId)) {
-      import('swiper/element/bundle').then(({ register }) => {
-        register();
-      });
-    }
-  }
 
   slides = [
     {
