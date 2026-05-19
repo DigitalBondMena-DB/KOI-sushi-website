@@ -47,6 +47,10 @@
   .text-brand-voice {
     @apply font-script;
   }
+  .content-visibility-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
+  }
 }
 
 /* Global Swiper styles */
