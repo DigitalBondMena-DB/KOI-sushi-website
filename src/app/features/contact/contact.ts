@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, Mail, Phone, MapPin, Send } from 'lucide-angular';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
-  imports: [CommonModule, TranslateModule, LucideAngularModule, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule],
   template: `
     <div class="pt-24 pb-16 bg-light">
       <div class="container mx-auto px-4">
@@ -25,7 +24,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                   <div
                     class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
                   >
-                    <lucide-icon [name]="phoneIcon" class="w-6 h-6"></lucide-icon>
+                    <!-- <lucide-icon [name]="phoneIcon" class="w-6 h-6"></lucide-icon> -->
                   </div>
                   <div>
                     <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">Phone</p>
@@ -37,7 +36,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                   <div
                     class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
                   >
-                    <lucide-icon [name]="mailIcon" class="w-6 h-6"></lucide-icon>
+                    <!-- <lucide-icon [name]="mailIcon" class="w-6 h-6"></lucide-icon> -->
                   </div>
                   <div>
                     <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">Email</p>
@@ -49,7 +48,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                   <div
                     class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
                   >
-                    <lucide-icon [name]="mapPinIcon" class="w-6 h-6"></lucide-icon>
+                    <!-- <lucide-icon [name]="mapPinIcon" class="w-6 h-6"></lucide-icon> -->
                   </div>
                   <div>
                     <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">Address</p>
@@ -111,7 +110,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                   class="w-full md:w-auto bg-primary text-light px-12 py-4 rounded-2xl font-bold hover:bg-primary/90 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>Send Message</span>
-                  <lucide-icon [name]="sendIcon" class="w-5 h-5"></lucide-icon>
+                  <!-- <lucide-icon [name]="sendIcon" class="w-5 h-5"></lucide-icon> -->
                 </button>
               </form>
             </div>
@@ -122,11 +121,6 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
   `,
 })
 export class ContactComponent {
-  readonly phoneIcon = Phone;
-  readonly mailIcon = Mail;
-  readonly mapPinIcon = MapPin;
-  readonly sendIcon = Send;
-
   contactForm: FormGroup;
 
   constructor(private fb: FormBuilder) {

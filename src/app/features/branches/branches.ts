@@ -1,23 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, MapPin, Phone, Clock, ExternalLink } from 'lucide-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MainHeader } from '../../shared/components/main-header/main-header';
 
 @Component({
   selector: 'app-branches',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LucideAngularModule, MainHeader],
+  imports: [CommonModule, TranslateModule, MainHeader],
   templateUrl: './branches.html',
 })
 export class BranchesComponent {
-  readonly icons = {
-    mapPin: MapPin,
-    phone: Phone,
-    clock: Clock,
-    externalLink: ExternalLink,
-  };
   readonly sanitizer = inject(DomSanitizer);
   branches = [
     {

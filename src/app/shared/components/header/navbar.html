@@ -34,7 +34,15 @@
         (click)="langService.toggleLanguage()"
         class="flex items-center gap-1 text-light hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
       >
-        <lucide-icon [name]="icons.globe" size="20"></lucide-icon>
+        <img
+          src="/assets/icons/global.svg"
+          width="20"
+          height="20"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          role="presentation"
+        />
         <span class="text-xs font-bold">{{ currentLang() === 'en' ? 'AR' : 'EN' }}</span>
       </button>
 
@@ -48,7 +56,22 @@
 
       <!-- Mobile Toggle -->
       <button (click)="toggleMobileMenu()" class="md:hidden text-light p-2">
-        <lucide-icon [name]="isMenuOpen() ? icons.x : icons.menu" class="w-6 h-6"></lucide-icon>
+        @if (!isMenuOpen()) {
+          <div class="flex flex-col mx-auto gap-1 w-4.5">
+            <div class="h-0.5 bg-light"></div>
+            <div class="h-0.5 bg-light"></div>
+            <div class="h-0.5 bg-light"></div>
+          </div>
+        } @else {
+          <div class="flex flex-col mx-auto gap-1 size-4.5 relative">
+            <div
+              class="h-5 w-0.5 bg-light top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 absolute"
+            ></div>
+            <div
+              class="h-5 w-0.5 bg-light top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 absolute"
+            ></div>
+          </div>
+        }
       </button>
     </div>
   </div>

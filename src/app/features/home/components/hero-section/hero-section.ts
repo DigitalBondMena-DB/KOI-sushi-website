@@ -3,11 +3,10 @@ import { NgOptimizedImage } from '@angular/common';
 import { LanguageService } from '../../../../core/services/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
-import { ArrowRight, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [TranslatePipe, RouterLink, LucideAngularModule, NgOptimizedImage],
+  imports: [TranslatePipe, RouterLink, NgOptimizedImage],
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +14,6 @@ import { ArrowRight, LucideAngularModule } from 'lucide-angular';
 })
 export class HeroSection {
   readonly langService = inject(LanguageService);
-  readonly arrowIcon = ArrowRight;
 
   slides = [
     {

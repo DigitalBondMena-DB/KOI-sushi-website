@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, Menu, X, Globe } from 'lucide-angular';
 import { LanguageService } from '../../../core/services/language.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule, LucideAngularModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule],
   templateUrl: './navbar.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -15,11 +14,6 @@ export class NavbarComponent {
   readonly langService = inject(LanguageService);
   currentLang = computed(() => this.langService.currentLang());
   isMenuOpen = signal(false);
-  readonly icons = {
-    globe: Globe,
-    menu: Menu,
-    x: X,
-  };
   toggleMobileMenu(): void {
     this.isMenuOpen.update((value) => !value);
   }
