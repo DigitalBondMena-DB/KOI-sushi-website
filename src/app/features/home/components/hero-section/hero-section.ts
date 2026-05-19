@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+} from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { LanguageService } from '../../../../core/services/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -13,7 +19,8 @@ import { RouterLink } from '@angular/router';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HeroSection {
-  readonly langService = inject(LanguageService);
+  private readonly langService = inject(LanguageService);
+  currentLang = computed(() => this.langService.currentLang());
 
   slides = [
     {
