@@ -4,3 +4,9 @@
 
 [[plugins]]
   package = "@netlify/angular-runtime"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Encoding = "br"
+    Vary = "Accept-Encoding"

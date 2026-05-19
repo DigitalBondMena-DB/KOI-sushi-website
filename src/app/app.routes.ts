@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { inject } from '@angular/core';
-import { LanguageService } from './core/services/language.service';
 import { langGuard } from './core/guards/lang.guard';
 import { HomeComponent } from './features/home/home';
 
@@ -8,10 +6,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: () => {
-      const langService = inject(LanguageService);
-      return `/${langService.currentLang()}`;
-    },
+    redirectTo: ':lang',
   },
   {
     path: ':lang',
@@ -46,9 +41,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: () => {
-      const langService = inject(LanguageService);
-      return `/${langService.currentLang()}`;
-    },
+    redirectTo: ':lang',
   },
 ];
