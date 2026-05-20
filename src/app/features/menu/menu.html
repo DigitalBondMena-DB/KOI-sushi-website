@@ -32,7 +32,7 @@
 
       <div class="flex items-center gap-4">
         <a
-          href="assets/menu.pdf"
+          [href]="pdfSrc()"
           download
           class="flex items-center gap-2 bg-primary text-light px-6 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
         >
@@ -43,11 +43,12 @@
     </div>
 
     <!-- Viewer Container -->
+    @if (pdfSrc()) {
     <div
       class="bg-dark/5 rounded-3xl overflow-hidden min-h-[600px] relative border-4 border-white shadow-2xl"
     >
       <pdf-viewer
-        [src]="pdfSrc"
+        [src]="pdfSrc()"
         [render-text]="true"
         [original-size]="false"
         [zoom]="zoom()"
@@ -55,5 +56,10 @@
         class="animate-fade-in"
       ></pdf-viewer>
     </div>
+    } @else {
+    <div class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+    </div>
+    }
   </div>
 </div>

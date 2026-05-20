@@ -1,41 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MainHeader } from '../../../../shared/components/main-header/main-header';
+import { TranslatePipe } from '@ngx-translate/core';
+import { BestSeller } from '../../interfaces/home-api-response.interface';
+import { MediaUrlDirective } from '../../../../shared/directives/media-url.directive';
+import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html-pipe';
 
 @Component({
   selector: 'app-best-sellers-section',
   templateUrl: './best-sellers-section.html',
-  imports: [MainHeader],
+  imports: [MainHeader, TranslatePipe, MediaUrlDirective,SafeHtmlPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BestSellersSection {
-  bestSellers = [
-    {
-      id: 1,
-      name: 'Dragon Roll',
-      price: '$18.00',
-      image: 'assets/images/test-image.webp',
-      description: 'Shrimp tempura, eel, avocado.',
-    },
-    {
-      id: 2,
-      name: 'Salmon Nigiri',
-      price: '$12.00',
-      image: 'assets/images/test-image.webp',
-      description: 'Fresh Atlantic salmon over rice.',
-    },
-    {
-      id: 3,
-      name: 'Spicy Tuna',
-      price: '$15.00',
-      image: 'assets/images/test-image.webp',
-      description: 'Premium tuna with spicy mayo.',
-    },
-    {
-      id: 4,
-      name: 'Rainbow Roll',
-      price: '$20.00',
-      image: 'assets/images/test-image.webp',
-      description: 'California roll topped with 5 fish.',
-    },
-  ];
+  bestSellers = input<BestSeller[]>([]);
 }

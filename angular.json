@@ -26,7 +26,6 @@
               }
             ],
             "styles": [
-   
               "public/assets/css/font.css",
               "src/styles.css"
             ],

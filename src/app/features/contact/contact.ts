@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title, Meta } from '@angular/platform-browser';
+import { SocialService } from '../../shared/services/social.service';
 
 @Component({
   selector: 'app-contact',
   imports: [CommonModule, TranslateModule, ReactiveFormsModule],
   template: `
-    <div class="pt-24 pb-16 bg-light">
+    <div class="pt-24 pb-16 bg-light min-h-screen">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
+          @if (socialData(); as data) {
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <!-- Contact Info -->
             <div class="lg:col-span-1 space-y-8">
@@ -24,11 +27,10 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                   <div
                     class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
                   >
-                    <!-- <lucide-icon [name]="phoneIcon" class="w-6 h-6"></lucide-icon> -->
                   </div>
                   <div>
                     <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">Phone</p>
-                    <p class="text-lg font-bold text-dark">0106 020 6736</p>
+                    <p class="text-lg font-bold text-dark">{{ data.phones[0].phone }}</p>
                   </div>
                 </div>
 
@@ -36,11 +38,10 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                   <div
                     class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
                   >
-                    <!-- <lucide-icon [name]="mailIcon" class="w-6 h-6"></lucide-icon> -->
                   </div>
                   <div>
                     <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">Email</p>
-                    <p class="text-lg font-bold text-dark">hello&#64;koisushi.com</p>
+                    <p class="text-lg font-bold text-dark">{{ data.contactus.email }}</p>
                   </div>
                 </div>
 
@@ -48,11 +49,10 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                   <div
                     class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5"
                   >
-                    <!-- <lucide-icon [name]="mapPinIcon" class="w-6 h-6"></lucide-icon> -->
                   </div>
                   <div>
                     <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">Address</p>
-                    <p class="text-lg font-bold text-dark">Cairo, Egypt</p>
+                    <p class="text-lg font-bold text-dark">{{ data.contactus.address }}</p>
                   </div>
                 </div>
               </div>
@@ -85,12 +85,12 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
                 </div>
 
                 <div class="space-y-2">
-                  <label class="text-sm font-bold text-dark/60 ml-2">Subject</label>
+                  <label class="text-sm font-bold text-dark/60 ml-2">Phone</label>
                   <input
                     type="text"
-                    formControlName="subject"
+                    formControlName="phone"
                     class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
-                    placeholder="How can we help?"
+                    placeholder="+20 123 456 7890"
                   />
                 </div>
 
@@ -106,15 +106,19 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 
                 <button
                   type="submit"
-                  [disabled]="contactForm.invalid"
+                  [disabled]="contactForm.invalid || isSubmitting"
                   class="w-full md:w-auto bg-primary text-light px-12 py-4 rounded-2xl font-bold hover:bg-primary/90 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Send Message</span>
-                  <!-- <lucide-icon [name]="sendIcon" class="w-5 h-5"></lucide-icon> -->
+                  <span>{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
                 </button>
               </form>
             </div>
           </div>
+          } @else {
+          <div class="flex justify-center items-center h-64">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          </div>
+          }
         </div>
       </div>
     </div>
@@ -122,21 +126,49 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 })
 export class ContactComponent {
   contactForm: FormGroup;
+  isSubmitting = false;
+
+  private readonly socialService = inject(SocialService);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
+
+  readonly socialData = computed(() => this.socialService.socialDataResource.value());
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      subject: ['', Validators.required],
+      phone: ['', Validators.required],
       message: ['', Validators.required],
+    });
+
+    effect(() => {
+      const data = this.socialData();
+      if (data?.seo) {
+        if (data.seo.title) {
+          this.titleService.setTitle(data.seo.title);
+        }
+        if (data.seo.description) {
+          this.metaService.updateTag({ name: 'description', content: data.seo.description });
+        }
+      }
     });
   }
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log('Form Submitted', this.contactForm.value);
-      alert('Message sent successfully!');
-      this.contactForm.reset();
+      this.isSubmitting = true;
+      this.socialService.submitLead(this.contactForm.value).subscribe({
+        next: () => {
+          alert('Message sent successfully!');
+          this.contactForm.reset();
+          this.isSubmitting = false;
+        },
+        error: () => {
+          alert('Failed to send message. Please try again later.');
+          this.isSubmitting = false;
+        }
+      });
     }
   }
 }

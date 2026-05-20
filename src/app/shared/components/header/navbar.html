@@ -2,75 +2,50 @@
   <div class="container mx-auto py-3 flex items-center justify-between">
     <!-- Logo -->
     <a [routerLink]="'/' + currentLang()" class="flex items-center gap-2 group">
-      <img
-        src="assets/images/koi-logo.jpg"
-        alt="KOI Logo"
-        width="50"
-        height="50"
-        decoding="async"
-        loading="lazy"
-        class="rounded-full group-hover:scale-105 transition-transform duration-300"
-      />
+      <img src="assets/images/koi-logo.jpg" alt="KOI Logo" width="50" height="50" decoding="async" loading="lazy"
+        class="rounded-full group-hover:scale-105 transition-transform duration-300" />
     </a>
 
     <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center gap-8">
-      @for (item of navItems(); track item.path) {
-        <a
-          [routerLink]="item.path"
-          routerLinkActive="text-primary"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="text-light hover:text-primary transition-colors font-medium text-sm uppercase tracking-wider"
-        >
-          {{ item.label | translate }}
-        </a>
+      @for (item of navItems; track $index) {
+      <a [routerLink]="'/' + currentLang() + item.path" routerLinkActive="text-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-light hover:text-primary transition-colors font-medium text-sm uppercase tracking-wider">
+        {{ item.label | translate }}
+      </a>
       }
     </div>
 
     <!-- Actions -->
     <div class="flex items-center gap-4">
       <!-- Language Toggle -->
-      <button
-        (click)="langService.toggleLanguage()"
-        class="flex items-center gap-1 text-light hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
-      >
-        <img
-          src="/assets/icons/global.svg"
-          width="20"
-          height="20"
-          alt=""
-          loading="lazy"
-          decoding="async"
-          role="presentation"
-        />
+      <button (click)="langService.toggleLanguage()"
+        class="flex items-center gap-1 text-light hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5">
+        <img src="/assets/icons/global.svg" width="20" height="20" alt="" loading="lazy" decoding="async"
+          role="presentation" />
         <span class="text-xs font-bold">{{ currentLang() === 'en' ? 'AR' : 'EN' }}</span>
       </button>
 
       <!-- Contact/Phone -->
-      <a
-        [routerLink]="'/' + currentLang() + '/contact'"
-        class="hidden sm:flex items-center gap-2 bg-primary text-light px-4 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-[background-color,box-shadow] hover:shadow-lg hover:shadow-primary/20"
-      >
-        <span>Contact Us</span>
+      <a [routerLink]="'/' + currentLang() + '/contact'"
+        class="hidden sm:flex items-center gap-2 bg-primary text-light px-4 py-2 rounded-full font-bold text-sm hover:bg-primary/90 transition-[background-color,box-shadow] hover:shadow-lg hover:shadow-primary/20">
+        <span>{{ 'NAV.CONTACT' | translate }}</span>
       </a>
 
       <!-- Mobile Toggle -->
       <button (click)="toggleMobileMenu()" class="md:hidden text-light p-2">
         @if (!isMenuOpen()) {
-          <div class="flex flex-col mx-auto gap-1 w-4.5">
-            <div class="h-0.5 bg-light"></div>
-            <div class="h-0.5 bg-light"></div>
-            <div class="h-0.5 bg-light"></div>
-          </div>
+        <div class="flex flex-col mx-auto gap-1 w-4.5">
+          <div class="h-0.5 bg-light"></div>
+          <div class="h-0.5 bg-light"></div>
+          <div class="h-0.5 bg-light"></div>
+        </div>
         } @else {
-          <div class="flex flex-col mx-auto gap-1 size-4.5 relative">
-            <div
-              class="h-5 w-0.5 bg-light top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 absolute"
-            ></div>
-            <div
-              class="h-5 w-0.5 bg-light top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 absolute"
-            ></div>
-          </div>
+        <div class="flex flex-col mx-auto gap-1 size-4.5 relative">
+          <div class="h-5 w-0.5 bg-light top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 absolute"></div>
+          <div class="h-5 w-0.5 bg-light top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 absolute"></div>
+        </div>
         }
       </button>
     </div>
@@ -78,24 +53,18 @@
 
   <!-- Mobile Menu -->
   @if (isMenuOpen()) {
-    <div class="md:hidden bg-dark border-t border-white/10 animate-fade-in">
-      <div class="flex flex-col gap-4 p-6">
-        @for (item of navItems(); track item.path) {
-          <a
-            [routerLink]="item.path"
-            (click)="closeMobileMenu()"
-            class="text-light hover:text-primary transition-colors text-lg font-bold uppercase"
-          >
-            {{ item.label | translate }}
-          </a>
-        }
-        <a
-          [routerLink]="'/' + currentLang() + '/contact'"
-          class="flex items-center gap-2 text-primary font-bold"
-        >
-          <span>{{ 'NAV.CONTACT' | translate }}</span>
-        </a>
-      </div>
+  <div class="md:hidden bg-dark border-t border-white/10 animate-fade-in">
+    <div class="flex flex-col gap-4 p-6">
+      @for (item of navItems; track $index) {
+      <a [routerLink]="'/' + currentLang() + item.path" (click)="closeMobileMenu()"
+        class="text-light hover:text-primary transition-colors text-lg font-bold uppercase">
+        {{ item.label | translate }}
+      </a>
+      }
+      <a [routerLink]="'/' + currentLang() + '/contact'" class="flex items-center gap-2 text-primary font-bold">
+        <span>{{ 'NAV.CONTACT' | translate }}</span>
+      </a>
     </div>
+  </div>
   }
 </nav>

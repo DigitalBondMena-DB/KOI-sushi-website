@@ -1,42 +1,7 @@
 <section class="py-24 bg-light overflow-hidden content-visibility-section">
   <div class="container mx-auto px-4">
-    <app-main-header [mainTitle]="'What Our Guests Say'" [subTitle]="'Testimonials'" />
-
-    <swiper-container
-      [attr.dir]="langService.isRtl() ? 'rtl' : 'ltr'"
-      loop="true"
-      slides-per-view="1"
-      space-between="20"
-      pagination="true"
-      pagination-clickable="true"
-      breakpoints='{"768": {"slidesPerView": 2}, "1200": {"slidesPerView": 3}}'
-      class="w-full pb-14"
-    >
-      @for (review of reviews; track review.id) {
-        <swiper-slide>
-          <div class="bg-white p-10 rounded-3xl shadow-xl shadow-dark/5 mx-4 my-8 relative">
-            <div class="text-primary mb-6">
-              <div class="flex space-x-1">
-                @for (i of [1, 2, 3, 4, 5]; track i) {
-                  <span class="text-xl">★</span>
-                }
-              </div>
-            </div>
-            <p class="text-dark/70 text-lg italic mb-8">"{{ review.message }}"</p>
-            <div class="flex items-center space-x-4">
-              <div
-                class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold"
-              >
-                {{ review.name[0] }}
-              </div>
-              <div>
-                <h5 class="font-bold text-dark">{{ review.name }}</h5>
-                <p class="text-sm text-dark/40 italic">Verified Guest</p>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-      }
-    </swiper-container>
+    <app-main-header [mainTitle]="'HOME.TESTIMONIALS.TITLE' | translate"
+      [subTitle]="'HOME.TESTIMONIALS.SUB_TITLE' | translate" />
+    <app-testimonials-slider [sliderData]="reviews()" />
   </div>
 </section>

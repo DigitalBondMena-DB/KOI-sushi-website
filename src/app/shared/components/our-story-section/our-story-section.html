@@ -1,33 +1,30 @@
 <section class="py-24 overflow-hidden content-visibility-section" [class]="class()">
   <div class="container mx-auto px-4">
+    @if (story(); as s) {
     <div class="grid md:grid-cols-2 gap-16 items-center">
       <div class="relative rounded-4xl overflow-hidden">
         <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
         <img
-          src="/assets/images/about/image.webp"
+          [appMediaUrl]="s.story_image"
           alt="About KOI"
           sizes="(min-width: 1024px) 50vw, (min-width: 768px) 41vw, 100vw"
           loading="lazy"
           decoding="async"
-          width="720"
-          height="576"
+          class="w-full h-full object-cover"
         />
       </div>
       <div class="space-y-8">
-        <h2 class="text-primary text-brand-voice text-3xl italic">Our Story</h2>
-        <h3 class="text-4xl md:text-5xl font-bold">Crafting the Perfect Sushi Experience</h3>
-        <p class="text-lg leading-relaxed">
-          At KOI Sushi Bar, we believe that sushi is more than just food—it's an art form. Our
-          master chefs use only the freshest ingredients to create vibrant, unforgettable flavors
-          that stay true to traditional techniques while embracing modern creativity.
-        </p>
+        <h2 class="text-primary text-brand-voice text-3xl italic">{{ 'HOME.ABOUT.OUR_STORY' | translate }}</h2>
+        <h3 class="text-4xl md:text-5xl font-bold">{{ s.title }}</h3>
+        <div class="text-lg leading-relaxed max-h-22.5 overflow-y-auto" [innerHTML]="s.description | safeHtml"></div>
         <a
           [routerLink]="'/' + langService.currentLang() + '/about'"
           class="inline-block border-b-2 border-primary text-primary font-bold pb-1 hover:border-dark hover:text-dark transition-all"
         >
-          Discover More
+          {{ 'HOME.ABOUT.DISCOVER_MORE' | translate }}
         </a>
       </div>
     </div>
+    }
   </div>
 </section>

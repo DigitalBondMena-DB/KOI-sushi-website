@@ -1,39 +1,9 @@
 <section class="py-24 bg-dark content-visibility-section">
   <div class="container mx-auto px-4">
-    <div class="flex flex-col md:flex-row text-white items-end justify-between mb-16 gap-6">
-      <app-main-header
-        [mainTitle]="'Our Gallery'"
-        [subTitle]="'Visual Feast'"
-        [textAlign]="'start'"
-      />
-      <p class="text-light/50 max-w-sm mb-2">
-        A glimpse into the art of sushi making and our vibrant atmosphere.
-      </p>
+    <div class="text-white mb-16">
+      <app-main-header [mainTitle]="'HOME.GALLERY.TITLE' | translate" [subTitle]="'HOME.GALLERY.SUB_TITLE' | translate"
+        [textAlign]="'start'" />
     </div>
-
-    <swiper-container
-      [attr.dir]="langService.isRtl() ? 'rtl' : 'ltr'"
-      loop="true"
-      slides-per-view="2"
-      space-between="16"
-      autoplay-delay="3000"
-      autoplay-disable-on-interaction="false"
-      breakpoints='{"768": {"slidesPerView": 4}, "1200": {"slidesPerView": 5}}'
-      class="w-full"
-    >
-      @for (img of galleryImages; track $index) {
-        <swiper-slide>
-          <div class="aspect-4/5 rounded-2xl overflow-hidden mx-2">
-            <img
-              [src]="img"
-              loading="lazy"
-              decoding="async"
-              alt="Gallery Image"
-              class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-            />
-          </div>
-        </swiper-slide>
-      }
-    </swiper-container>
+    <app-gallery-slider [Images]="galleryImages()" />
   </div>
 </section>

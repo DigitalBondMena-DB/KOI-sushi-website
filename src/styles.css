@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+@source "../src/**/*.{html,ts,css}";
+@source "../public/**/*.{html,css}";
 
 @theme {
   --color-primary: #e94c3c;
@@ -34,6 +36,34 @@
 }
 
 @layer base {
+  /* ===== Scrollbar Global Style ===== */
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--color-light);
+  }
+
+  /* Thumb */
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-primary), #c93d30);
+    border-radius: 999px;
+    border: 2px solid var(--color-light);
+  }
+
+  /* Hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff5a4a, var(--color-primary));
+  }
+
+  /* Corner (for both axes) */
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
   html {
     @apply antialiased bg-light text-dark selection:bg-primary selection:text-light;
   }

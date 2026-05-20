@@ -3,6 +3,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../core/services/language.service';
 import { CommonModule } from '@angular/common';
+import { NAV_LINKS } from '../../constants/nav-links.constant';
+import { NavLinks } from '../../models/nav-links';
 
 @Component({
   selector: 'app-navbar',
@@ -20,13 +22,5 @@ export class NavbarComponent {
   closeMobileMenu(): void {
     this.isMenuOpen.set(false);
   }
-  navItems = computed(() => {
-    const lang = this.currentLang();
-    return [
-      { label: 'NAV.HOME', path: `/${lang}` },
-      { label: 'NAV.ABOUT', path: `/${lang}/about` },
-      { label: 'NAV.MENU', path: `/${lang}/menu` },
-      { label: 'NAV.BRANCHES', path: `/${lang}/branches` },
-    ];
-  });
+  readonly navItems: NavLinks[] = NAV_LINKS;
 }

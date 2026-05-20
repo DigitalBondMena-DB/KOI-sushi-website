@@ -1,5 +1,5 @@
-import { Injectable, signal, computed, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable, signal, computed, inject, RendererFactory2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
@@ -10,45 +10,31 @@ export type Language = 'en' | 'ar';
 })
 export class LanguageService {
   private readonly translate = inject(TranslateService);
-  private readonly platformId = inject(PLATFORM_ID);
+  private readonly document = inject(DOCUMENT);
+  private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
+  private readonly router = inject(Router);
 
   private readonly _currentLang = signal<Language>('en');
   readonly currentLang = this._currentLang.asReadonly();
   readonly isRtl = computed(() => this._currentLang() === 'ar');
 
   constructor() {
-    this.initLanguage();
-  }
-
-  private initLanguage() {
     this.translate.setDefaultLang('en');
-    
-    if (isPlatformBrowser(this.platformId)) {
-      const savedLang = localStorage.getItem('lang') as Language;
-      const lang = savedLang || 'en';
-      this.setLanguage(lang);
-    } else {
-      this.setLanguage('en');
-    }
   }
 
   setLanguage(lang: Language) {
     this._currentLang.set(lang);
     this.translate.use(lang);
-    
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('lang', lang);
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    }
-  }
 
-  private readonly router = inject(Router);
+    const htmlTag = this.document.documentElement;
+    this.renderer.setAttribute(htmlTag, 'lang', lang);
+    this.renderer.setAttribute(htmlTag, 'dir', lang === 'ar' ? 'rtl' : 'ltr');
+  }
 
   toggleLanguage() {
     const newLang = this._currentLang() === 'en' ? 'ar' : 'en';
     this.setLanguage(newLang);
-    
+
     const currentUrl = this.router.url;
     let newUrl = currentUrl;
     if (currentUrl.startsWith('/en')) {
@@ -58,6 +44,6 @@ export class LanguageService {
     } else {
       newUrl = `/${newLang}${currentUrl}`;
     }
-    this.router.navigateByUrl(newUrl);
+    window.location.href = newUrl;
   }
 }

@@ -2,15 +2,12 @@
   <div class="container mx-auto px-4">
     <div class="grid md:grid-cols-2 gap-16 items-center">
       <div class="order-2 md:order-1 space-y-8">
-        <h2 class="text-primary text-brand-voice text-4xl">About Us</h2>
+        <h2 class="text-primary text-brand-voice text-4xl">{{ 'HOME.ABOUT_US' | translate }}</h2>
         <h3 class="text-4xl md:text-5xl font-bold text-dark">
-          A Tradition of Freshness and Quality
+          {{ about()?.title }}
         </h3>
-        <p class="text-dark/60 text-lg leading-relaxed">
-          Founded with a passion for Japanese culinary excellence, KOI Sushi Bar has been at the
-          forefront of the sushi scene for over a decade. We pride ourselves on sourcing the finest
-          ingredients globally and locally to ensure every bite is a testament to quality.
-        </p>
+        <div class="text-dark/60 text-lg leading-relaxed" [innerHTML]="about()?.description | safeHtml">
+        </div>
         <div class="grid grid-cols-2 gap-8 pt-8 border-t border-dark/5">
           <div>
             <p class="text-3xl font-bold text-primary mb-2">100%</p>
@@ -24,15 +21,10 @@
       </div>
       <div class="order-1 md:order-2">
         <div class="relative">
-          <img
-            ngSrc="/assets/images/about/image.png"
-            alt="KOI Kitchen"
-            class="relative z-10 rounded-[3rem] shadow-2xl object-cover w-full md:w-[592px] md:h-[473px] lg:w-[720px] lg:h-[576px]"
-            width="720"
-            height="576"
-            sizes="(min-width: 1024px) 50vw, (min-width: 768px) 41vw, 100vw"
-            priority
-          />
+          @if (about()?.main_image) {
+            <img [appMediaUrl]="about()!.main_image" alt="KOI Kitchen"
+              class="relative z-10 rounded-[3rem] shadow-2xl object-cover w-full md:w-[592px] md:h-[473px] lg:w-[720px] lg:h-[576px]" />
+          }
         </div>
       </div>
     </div>

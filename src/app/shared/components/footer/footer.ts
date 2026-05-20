@@ -1,36 +1,29 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../../core/services/language.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { NAV_LINKS } from '../../constants/nav-links.constant';
+import { NavLinks } from '../../models/nav-links';
+import { SocialService } from '../../services/social.service';
+import { MediaUrlDirective } from '../../directives/media-url.directive';
+import { SafeHtmlPipe } from '../../pipes/safe-html-pipe';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe, MediaUrlDirective,SafeHtmlPipe],
   templateUrl: './footer.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
-  readonly langService = inject(LanguageService);
-  readonly socialMediaLinks = [
-    { name: 'facebook', url: '#', icon: 'assets/icons/facebook.svg' },
-    { name: 'instagram', url: '#', icon: 'assets/icons/facebook.svg' },
-    { name: 'tiktok', url: '#', icon: 'assets/icons/facebook.svg' },
-  ];
+  private readonly langService = inject(LanguageService);
+  private readonly socialService = inject(SocialService);
+
+  readonly socialData = computed(() => this.socialService.socialDataResource.value());
+  
   currentLang = computed(() => this.langService.currentLang());
-  quickLinks = computed(() => {
-    const lang = this.currentLang();
-    return [
-      { label: 'Home', path: `/${lang}` },
-      { label: 'About Us', path: `/${lang}/about` },
-      { label: 'Our Menu', path: `/${lang}/menu` },
-      { label: 'Branches', path: `/${lang}/branches` },
-    ];
-  });
-  supportLinks = computed(() => {
-    const lang = this.currentLang();
-    return [
-      { label: 'Contact Us', path: `/${lang}/contact` },
-      { label: 'Privacy Policy', path: `/${lang}/privacy` },
-      { label: 'Terms of Service', path: `/${lang}/terms` },
-    ];
-  });
+  readonly quickLinks: NavLinks[] = NAV_LINKS;
+  supportLinks = [
+    { label: 'NAV.CONTACT', path: `/contact` },
+    { label: 'FOOTER.SUPPORT_LINKS.PRIVACY_POLICY', path: `/privacy` },
+  ];
 }

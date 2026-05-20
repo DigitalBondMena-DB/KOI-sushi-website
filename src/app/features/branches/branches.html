@@ -2,14 +2,14 @@
   <div class="container mx-auto px-4">
     <app-main-header mainTitle="Find Us Near You" subTitle="Our Locations" />
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-      @for (branch of branches; track branch.id) {
+      @for (branch of branches(); track branch.id) {
         <div
           class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl shadow-dark/5 flex flex-col border border-dark/5 hover:shadow-2xl transition-all duration-500 group"
         >
           <!-- Map Section -->
           <div class="h-[300px] overflow-hidden relative">
             <iframe
-              [src]="this.sanitizer.bypassSecurityTrustResourceUrl(branch?.mapUrl ?? '')"
+              [src]="this.sanitizer.bypassSecurityTrustResourceUrl(branch?.map_embed_url ?? '')"
               class="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
               style="border: 0"
               allowfullscreen
@@ -23,57 +23,36 @@
           <div class="p-10 flex flex-col justify-between gap-8">
             <div class="space-y-6">
               <div class="flex items-center justify-between">
-                <h3 class="text-3xl font-bold text-dark">{{ branch.name }}</h3>
+                <h3 class="text-3xl font-bold text-dark">{{ branch.title }}</h3>
                 <div
                   class="bg-primary/10 text-primary p-2 rounded-xl group-hover:rotate-12 transition-transform"
                 >
-                  <!-- <lucide-icon [name]="icons.mapPin" size="24"></lucide-icon> -->
                 </div>
               </div>
 
               <div class="space-y-4">
                 <div class="flex items-start gap-3">
-                  <!-- <lucide-icon
-                    [name]="icons.mapPin"
-                    class="text-primary mt-1 shrink-0"
-                    size="20"
-                  ></lucide-icon> -->
                   <p class="text-dark/60 leading-relaxed">{{ branch.address }}</p>
                 </div>
-                <div class="flex items-center gap-3 text-dark/60">
-                  <!-- <lucide-icon
-                    [name]="icons.phone"
-                    class="text-primary shrink-0"
-                    size="20"
-                  ></lucide-icon> -->
+                  @if (branch.activephones && branch.activephones.length > 0) {
                   <a
-                    [href]="'tel:' + branch.phone"
-                    class="hover:text-primary transition-colors font-bold"
-                    >{{ branch.phone }}</a
+                    [href]="'tel:' + branch.activephones[0].phone"
+                    class="hover:text-primary transition-colors block"
+                    >{{ branch.activephones[0].phone }}</a
                   >
-                </div>
+                  }
                 <div class="flex items-center gap-3 text-dark/60">
-                  <!-- <lucide-icon
-                    [name]="icons.clock"
-                    class="text-primary shrink-0"
-                    size="20"
-                  ></lucide-icon> -->
-                  <span>{{ branch.hours }}</span>
+                  <span>{{ branch.working_hours }}</span>
                 </div>
               </div>
             </div>
 
             <a
-              [href]="branch.googleMapsUrl"
+              [href]="branch.map_url"
               target="_blank"
               class="flex items-center justify-center gap-2 bg-dark text-light py-4 rounded-2xl font-bold hover:bg-primary transition-colors group/btn"
             >
               <span>Get Directions</span>
-              <!-- <lucide-icon
-                [name]="icons.externalLink"
-                size="16"
-                class="group-hover/btn:translate-x-1 transition-transform"
-              ></lucide-icon> -->
             </a>
           </div>
         </div>

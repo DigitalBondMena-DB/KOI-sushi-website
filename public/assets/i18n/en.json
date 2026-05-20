@@ -11,6 +11,27 @@
     "SLOGAN": "Sushi always part of the plan"
   },
   "HOME": {
-    "ORDER_NOW": "Order Now"
+    "ORDER_NOW": "Order Now",
+    "ABOUT_US": "About Us",
+    "BEST_SELLERS": {
+      "TITLE": "Our Best Sellers",
+      "SUB_TITLE": "Signature Dishes",
+      "POPULAR": "Popular",
+      "EGP": "EGP"
+    },
+    "TESTIMONIALS": {
+      "TITLE": "Testimonials",
+      "SUB_TITLE": "What Our Guests Say"
+    },
+    "GALLERY": {
+      "TITLE": "Our Gallery",
+      "SUB_TITLE": "Visual Feast"
+    }
+  },
+  "FOOTER": {
+    "QUICK_LINKS": "QUICK LINKS",
+    "SUPPORT": "SUPPORT",
+    "FOLLOW_US": "Follow Us",
+    "COPYRIGHT": "All rights reserved for"
   }
 }

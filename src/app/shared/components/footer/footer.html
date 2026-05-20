@@ -1,77 +1,68 @@
 <!-- Footer -->
-<footer class="bg-dark text-light py-20 border-t border-white/5 content-visibility-section">
+<footer class="bg-dark text-light pt-20 pb-10 border-t border-white/5 content-visibility-section">
   <div class="container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
       <div class="col-span-1 md:col-span-1 space-y-6">
         <a [routerLink]="'/' + currentLang()">
-          <img
-            src="assets/images/koi-logo.jpg"
-            alt="KOI Sushi"
-            loading="lazy"
-            decoding="async"
-            width="48"
-            height="48"
-          />
+          <img src="assets/images/koi-logo.jpg" alt="KOI Sushi" loading="lazy" decoding="async" width="40"
+            height="40" />
         </a>
-        <p class="text-light/50 leading-relaxed">
-          The art of sushi, delivered with passion. Experience the freshest ingredients and
-          innovative flavors at KOI Sushi Bar.
-        </p>
+        <div class="text-light/50 leading-relaxed"
+          [innerHTML]="socialData()?.contactus?.footer_Text | safeHtml">
+        </div>
       </div>
 
       <div class="space-y-6">
-        <h4 class="text-xl font-bold uppercase tracking-widest text-primary">Quick Links</h4>
+        <h4 class="text-xl font-bold uppercase tracking-widest text-primary">
+          {{ 'FOOTER.QUICK_LINKS' | translate }}
+        </h4>
         <ul class="space-y-4 text-light/60">
-          @for (item of quickLinks(); track item.path) {
-            <li>
-              <a [routerLink]="item.path" class="hover:text-primary transition-colors">{{
-                item.label
-              }}</a>
-            </li>
+          @for (item of quickLinks; track $index) {
+          <li>
+            <a [routerLink]="'/' + currentLang() + item.path" class="hover:text-primary transition-colors">{{ item.label
+              | translate }}</a>
+          </li>
           }
         </ul>
       </div>
 
       <div class="space-y-6">
-        <h4 class="text-xl font-bold uppercase tracking-widest text-primary">Support</h4>
+        <h4 class="text-xl font-bold uppercase tracking-widest text-primary">
+          {{ 'FOOTER.SUPPORT' | translate }}
+        </h4>
         <ul class="space-y-4 text-light/60">
-          @for (item of supportLinks(); track item.path) {
-            <li>
-              <a [routerLink]="item.path" class="hover:text-primary transition-colors">{{
-                item.label
-              }}</a>
-            </li>
+          @for (item of supportLinks; track $index) {
+          <li>
+            <a [routerLink]="'/' + currentLang() + item.path" class="hover:text-primary transition-colors">{{ item.label
+              | translate }}</a>
+          </li>
           }
         </ul>
       </div>
 
       <div class="space-y-6">
-        <h4 class="text-xl font-bold uppercase tracking-widest text-primary">Follow Us</h4>
+        <h4 class="text-xl font-bold uppercase tracking-widest text-primary">
+          {{ 'FOOTER.FOLLOW_US' | translate }}
+        </h4>
         <div class="flex space-x-4">
-          @for (item of socialMediaLinks; track item.name) {
-            <a
-              [href]="item.url"
-              [title]="item.name"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-all"
-            >
-              <img
-                [src]="item.icon"
-                [alt]="item.name"
-                width="16"
-                height="16"
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
+          @for (item of socialData()?.socialmedias || []; track item.id) {
+          <a [href]="item?.social_url ?? ''" [title]="item?.social_name ?? ''" target="_blank" rel="noopener noreferrer"
+            class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-all">
+            <img [appMediaUrl]="item?.social_icon ?? ''" [alt]="item?.social_name ?? ''" width="16" height="16"
+              loading="lazy" decoding="async" />
+          </a>
           }
         </div>
       </div>
     </div>
 
     <div class="pt-8 border-t border-white/5 text-center text-sm text-light/30">
-      <p>&copy; 2026 KOI Sushi Bar. All rights reserved. Crafted for Excellence.</p>
+      <p>
+        {{ 'FOOTER.COPYRIGHT' | translate }}
+        <img src="/assets/images/digital-bond-logo.webp" alt="Digital Bond" loading="lazy" decoding="async" width="48"
+          height="48" class="inline-block align-bottom" />
+        &copy;2026
+      </p>
     </div>
   </div>
 </footer>

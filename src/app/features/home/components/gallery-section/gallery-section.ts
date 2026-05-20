@@ -1,27 +1,15 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
-import { LanguageService } from '../../../../core/services/language.service';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { MainHeader } from '../../../../shared/components/main-header/main-header';
+import { TranslatePipe } from '@ngx-translate/core';
+import { GallerySlider } from './components/gallery-slider/gallery-slider';
+import { GalleryImage } from '../../interfaces/home-api-response.interface';
 
 @Component({
   selector: 'app-gallery-section',
-  imports: [MainHeader],
+  imports: [MainHeader, TranslatePipe, GallerySlider],
   templateUrl: './gallery-section.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GallerySection {
-  readonly langService = inject(LanguageService);
-
-  galleryImages = [
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-    'assets/images/about/image.webp',
-  ];
+  galleryImages = input<GalleryImage[]>([]);
 }

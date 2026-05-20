@@ -1,4 +1,10 @@
 <div class="pt-24 min-h-screen">
-  <app-about-section />
-  <app-our-story-section class="bg-dark text-light" />
+  @if (aboutData(); as data) {
+    <app-about-section [about]="data.about" />
+    <app-our-story-section class="bg-dark text-light" [story]="data.story" />
+  } @else {
+    <div class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+    </div>
+  }
 </div>

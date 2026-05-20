@@ -20,10 +20,10 @@ export const routes: Routes = [
         path: 'about',
         loadComponent: () => import('./features/about/about').then((m) => m.AboutComponent),
       },
-      // {
-      //   path: 'menu',
-      //   loadComponent: () => import('./features/menu/menu').then((m) => m.MenuComponent),
-      // },
+      {
+        path: 'menu',
+        loadComponent: () => import('./features/menu/menu').then((m) => m.MenuComponent),
+      },
       {
         path: 'branches',
         loadComponent: () =>
