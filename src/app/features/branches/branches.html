@@ -1,61 +1,51 @@
+@if(isLoading()) {
+<app-loading-screen />
+}
 <div class="pt-24 pb-24 bg-light min-h-screen">
   <div class="container mx-auto px-4">
     <app-main-header mainTitle="Find Us Near You" subTitle="Our Locations" />
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       @for (branch of branches(); track branch.id) {
-        <div
-          class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl shadow-dark/5 flex flex-col border border-dark/5 hover:shadow-2xl transition-all duration-500 group"
-        >
-          <!-- Map Section -->
-          <div class="h-[300px] overflow-hidden relative">
-            <iframe
-              [src]="this.sanitizer.bypassSecurityTrustResourceUrl(branch?.map_embed_url ?? '')"
-              class="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
-              style="border: 0"
-              allowfullscreen
-            >
-            </iframe>
-            <div
-              class="absolute inset-0 pointer-events-none border-4 border-white/20 m-4 rounded-2xl"
-            ></div>
-          </div>
-          <!-- Info Section -->
-          <div class="p-10 flex flex-col justify-between gap-8">
-            <div class="space-y-6">
-              <div class="flex items-center justify-between">
-                <h3 class="text-3xl font-bold text-dark">{{ branch.title }}</h3>
-                <div
-                  class="bg-primary/10 text-primary p-2 rounded-xl group-hover:rotate-12 transition-transform"
-                >
-                </div>
-              </div>
-
-              <div class="space-y-4">
-                <div class="flex items-start gap-3">
-                  <p class="text-dark/60 leading-relaxed">{{ branch.address }}</p>
-                </div>
-                  @if (branch.activephones && branch.activephones.length > 0) {
-                  <a
-                    [href]="'tel:' + branch.activephones[0].phone"
-                    class="hover:text-primary transition-colors block"
-                    >{{ branch.activephones[0].phone }}</a
-                  >
-                  }
-                <div class="flex items-center gap-3 text-dark/60">
-                  <span>{{ branch.working_hours }}</span>
-                </div>
+      <div
+        class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl shadow-dark/5 flex flex-col border border-dark/5 hover:shadow-2xl transition-all duration-500 group">
+        <!-- Map Section -->
+        <div class="h-75 overflow-hidden relative">
+          <iframe [src]="this.sanitizer.bypassSecurityTrustResourceUrl(branch?.map_embed_url ?? '')"
+            class="w-full h-full grayscale hover:grayscale-0 transition-all duration-700" style="border: 0"
+            allowfullscreen>
+          </iframe>
+          <div class="absolute inset-0 pointer-events-none border-4 border-white/20 m-4 rounded-2xl"></div>
+        </div>
+        <!-- Info Section -->
+        <div class="p-10 flex flex-col justify-between gap-8">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-3xl font-bold text-dark line-clamp-1">{{ branch.title }}</h3>
+              <div class="bg-primary/10 text-primary p-2 rounded-xl group-hover:rotate-12 transition-transform">
               </div>
             </div>
 
-            <a
-              [href]="branch.map_url"
-              target="_blank"
-              class="flex items-center justify-center gap-2 bg-dark text-light py-4 rounded-2xl font-bold hover:bg-primary transition-colors group/btn"
-            >
-              <span>Get Directions</span>
-            </a>
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <p class="text-dark/60 leading-relaxed">{{ branch.address }}</p>
+              </div>
+              <h4 class="text-lg font-bold text-dark">Phone</h4>
+              @for(phone of branch.activephones; track phone.branch_id) {
+              <a [href]="'tel:' + phone.phone.replaceAll(' ', '')" class="hover:text-primary transition-colors block">{{
+                phone.phone }}</a>
+              }
+              <div class="flex items-center gap-3 text-dark/60">
+                <span>{{ branch.working_hours }}</span>
+              </div>
+            </div>
           </div>
+
+          <a [href]="branch.map_url" target="_blank"
+            class="flex items-center justify-center gap-2 bg-dark text-light py-4 rounded-2xl font-bold hover:bg-primary transition-colors group/btn">
+            <span>Get Directions</span>
+          </a>
         </div>
+      </div>
       }
     </div>
   </div>

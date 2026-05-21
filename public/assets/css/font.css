@@ -25,3 +25,31 @@
   ascent-override: 95%;
   descent-override: 20%;
 }
+/* ar font */
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/assets/fonts/Alexandria/Alexandria-Regular.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+  size-adjust: 105%;
+  ascent-override: 95%;
+  descent-override: 20%;
+}
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/assets/fonts/Alexandria/Alexandria-Bold.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 700;
+  size-adjust: 105%;
+  ascent-override: 95%;
+  descent-override: 20%;
+}
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/assets/fonts/Alexandria/Alexandria-Medium.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 500;
+  size-adjust: 105%;
+  ascent-override: 95%;
+  descent-override: 20%;
+}

@@ -24,6 +24,6 @@ export class Footer {
   readonly quickLinks: NavLinks[] = NAV_LINKS;
   supportLinks = [
     { label: 'NAV.CONTACT', path: `/contact` },
-    { label: 'FOOTER.SUPPORT_LINKS.PRIVACY_POLICY', path: `/privacy` },
+    { label: 'FOOTER.PRIVACY_POLICY', path: `/privacy` },
   ];
 }

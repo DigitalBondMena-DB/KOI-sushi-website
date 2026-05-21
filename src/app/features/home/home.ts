@@ -7,10 +7,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { AboutSection } from '../../shared/components/about-section/about-section';
 import { HomeService } from './services/home.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { LoadingScreen } from "../../shared/components/loading-screen/loading-screen";
 
 @Component({
   selector: 'app-home',
-  imports: [HeroSection, BestSellersSection, TestimonialsSection, GallerySection, AboutSection],
+  imports: [HeroSection, BestSellersSection, TestimonialsSection, GallerySection, AboutSection, LoadingScreen],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

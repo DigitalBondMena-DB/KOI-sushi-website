@@ -28,10 +28,12 @@
       "SUB_TITLE": "Visual Feast"
     }
   },
+  "OUR_STORY" : "Our Story",
   "FOOTER": {
     "QUICK_LINKS": "QUICK LINKS",
     "SUPPORT": "SUPPORT",
     "FOLLOW_US": "Follow Us",
-    "COPYRIGHT": "All rights reserved for"
+    "COPYRIGHT": "All rights reserved for",
+    "PRIVACY_POLICY": "privacy policy"
   }
 }

@@ -45,8 +45,8 @@
           {{ 'FOOTER.FOLLOW_US' | translate }}
         </h4>
         <div class="flex space-x-4">
-          @for (item of socialData()?.socialmedias || []; track item.id) {
-          <a [href]="item?.social_url ?? ''" [title]="item?.social_name ?? ''" target="_blank" rel="noopener noreferrer"
+          @for (item of socialData()?.socialmedias ?? []; track item.id) {
+          <a [href]="item?.social_url ?? ''" [title]="item?.social_name ?? ''" [attr.aria-label]="item?.social_name ?? ''"  target="_blank" rel="noopener noreferrer"
             class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-all">
             <img [appMediaUrl]="item?.social_icon ?? ''" [alt]="item?.social_name ?? ''" width="16" height="16"
               loading="lazy" decoding="async" />

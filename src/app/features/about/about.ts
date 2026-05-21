@@ -5,10 +5,11 @@ import { AboutSection } from '../../shared/components/about-section/about-sectio
 import { OurStorySection } from '../../shared/components/our-story-section/our-story-section';
 import { AboutService } from './services/about.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { LoadingScreen } from "../../shared/components/loading-screen/loading-screen";
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule, TranslateModule, AboutSection, OurStorySection],
+  imports: [CommonModule, TranslateModule, AboutSection, OurStorySection, LoadingScreen],
   templateUrl: './about.html',
 })
 export class AboutComponent {
@@ -17,6 +18,7 @@ export class AboutComponent {
   private readonly metaService = inject(Meta);
 
   readonly aboutData = computed(() => this.aboutService.aboutDataResource.value());
+  readonly isLoading = computed(() => this.aboutService.aboutDataResource.isLoading());
 
   constructor() {
     effect(() => {

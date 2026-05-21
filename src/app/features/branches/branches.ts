@@ -4,11 +4,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { MainHeader } from '../../shared/components/main-header/main-header';
 import { BranchesService } from './services/branches.service';
+import { LoadingScreen } from "../../shared/components/loading-screen/loading-screen";
 
 @Component({
   selector: 'app-branches',
   standalone: true,
-  imports: [CommonModule, TranslateModule, MainHeader],
+  imports: [CommonModule, TranslateModule, MainHeader, LoadingScreen],
   templateUrl: './branches.html',
 })
 export class BranchesComponent {
@@ -18,6 +19,7 @@ export class BranchesComponent {
   private readonly metaService = inject(Meta);
 
   readonly branchesData = computed(() => this.branchesService.branchesDataResource.value());
+  readonly isLoading = computed(() => this.branchesService.branchesDataResource.isLoading());
   readonly branches = computed(() => this.branchesData()?.branches || []);
 
   constructor() {

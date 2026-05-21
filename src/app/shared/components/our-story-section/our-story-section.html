@@ -14,15 +14,15 @@
         />
       </div>
       <div class="space-y-8">
-        <h2 class="text-primary text-brand-voice text-3xl italic">{{ 'HOME.ABOUT.OUR_STORY' | translate }}</h2>
+        <h2 class="text-primary text-brand-voice text-3xl">{{ 'OUR_STORY' | translate }}</h2>
         <h3 class="text-4xl md:text-5xl font-bold">{{ s.title }}</h3>
         <div class="text-lg leading-relaxed max-h-22.5 overflow-y-auto" [innerHTML]="s.description | safeHtml"></div>
-        <a
+        <!-- <a
           [routerLink]="'/' + langService.currentLang() + '/about'"
           class="inline-block border-b-2 border-primary text-primary font-bold pb-1 hover:border-dark hover:text-dark transition-all"
         >
           {{ 'HOME.ABOUT.DISCOVER_MORE' | translate }}
-        </a>
+        </a> -->
       </div>
     </div>
     }

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../../core/services/language.service';
 import { StoryData } from '../../../features/about/interfaces/about-api-response.interface';
 import { MediaUrlDirective } from '../../directives/media-url.directive';
@@ -8,7 +7,7 @@ import { SafeHtmlPipe } from '../../pipes/safe-html-pipe';
 
 @Component({
   selector: 'app-our-story-section',
-  imports: [RouterLink, MediaUrlDirective, TranslatePipe, SafeHtmlPipe],
+  imports: [ MediaUrlDirective, TranslatePipe, SafeHtmlPipe],
   templateUrl: './our-story-section.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

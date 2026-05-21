@@ -28,10 +28,12 @@
       "SUB_TITLE": "وليمة بصرية"
     }
   },
+  "OUR_STORY":"عن قصتنا",
   "FOOTER": {
     "QUICK_LINKS": "روابط سريعة",
     "SUPPORT": "الدعم",
     "FOLLOW_US": "تابعنا",
-    "COPYRIGHT": "جميع الحقوق محفوظة ل"
+    "COPYRIGHT": "جميع الحقوق محفوظة ل",
+    "PRIVACY_POLICY": "سياسة الخصوصيه"
   }
 }

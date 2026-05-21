@@ -18,7 +18,11 @@ import { SafeHtmlPipe } from '../../../../shared/pipes/safe-html-pipe';
   selector: 'app-hero-section',
   imports: [TranslatePipe, RouterLink, MediaUrlDirective,SafeHtmlPipe],
   templateUrl: './hero-section.html',
-  styleUrl: './hero-section.css',
+  styles: `
+  swiper-container::part(pagination) {
+  bottom: 40px;
+}
+`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

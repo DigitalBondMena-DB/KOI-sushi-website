@@ -16,10 +16,10 @@
           </div>
         </div>
         <div class="pt-6 text-center">
-          <h4 class="text-xl font-bold mb-2">{{ product.title }}</h4>
-          <div class="text-light/50 text-sm mb-4" [innerHTML]=" product.description | safeHtml"></div>
+          <h4 class="text-xl font-bold mb-2 line-clamp-2" [title]="product.title">{{ product.title }}</h4>
+          <div class="text-light/50 text-sm mb-4 line-clamp-3" [innerHTML]=" product.description | safeHtml"></div>
         </div>
-                  <div class="text-primary font-bold text-xl mt-auto mx-auto pb-6">{{ product.price}} {{"HOME.BEST_SELLERS.EGP" | translate}}</div>
+                  <span class="text-primary font-bold text-xl mt-auto mx-auto pb-6">{{ product.price}} {{"HOME.BEST_SELLERS.EGP" | translate}}</span>
 
       </div>
       }

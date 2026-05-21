@@ -1,11 +1,9 @@
-@if (homeData(); as data) {
-  <app-hero-section [slides]="data.hero" />
-  <app-about-section [about]="data.about" />
-  <app-best-sellers-section [bestSellers]="data.bestSellers" />
-  <app-testimonials-section [reviews]="data.testimonials" />
-  <app-gallery-section [galleryImages]="data.gallery" />
-} @else if (isLoading()) {
-  <div class="flex justify-center items-center h-screen bg-light">
-    <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary"></div>
-  </div>
+   @if (isLoading()) {
+   <app-loading-screen/>
 }
+  <app-hero-section [slides]="homeData()?.hero ?? []" />
+  <app-about-section [about]="homeData()?.about" />
+  <app-best-sellers-section [bestSellers]="homeData()?.bestSellers ?? []" />
+  <app-testimonials-section [reviews]="homeData()?.testimonials ?? []" />
+  <app-gallery-section [galleryImages]="homeData()?.gallery ?? []" />
+

@@ -3,19 +3,19 @@
     <div class="grid md:grid-cols-2 gap-16 items-center">
       <div class="order-2 md:order-1 space-y-8">
         <h2 class="text-primary text-brand-voice text-4xl">{{ 'HOME.ABOUT_US' | translate }}</h2>
-        <h3 class="text-4xl md:text-5xl font-bold text-dark">
+        <h3 class="text-4xl md:text-5xl font-bold text-dark line-clamp-2" [title]="about()?.title">
           {{ about()?.title }}
         </h3>
         <div class="text-dark/60 text-lg leading-relaxed" [innerHTML]="about()?.description | safeHtml">
         </div>
         <div class="grid grid-cols-2 gap-8 pt-8 border-t border-dark/5">
           <div>
-            <p class="text-3xl font-bold text-primary mb-2">100%</p>
-            <p class="text-sm text-dark/40 uppercase tracking-widest font-bold">Fresh Daily</p>
+            <span aria-labelledby="state-1" class="text-3xl font-bold text-primary mb-2">100%</span>
+            <h4 id="state-1"  class="text-sm text-dark/40 uppercase tracking-widest font-bold line-clamp-1" title="Fresh Daily">Fresh Daily</h4>
           </div>
           <div>
-            <p class="text-3xl font-bold text-primary mb-2">25+</p>
-            <p class="text-sm text-dark/40 uppercase tracking-widest font-bold">Master Chefs</p>
+            <span class="text-3xl font-bold text-primary mb-2"  aria-labelledby="state-2">25+</span>
+            <h4 class="text-sm text-dark/40 uppercase tracking-widest font-bold" id="state-2" title="Master Chefs">Master Chefs</h4>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <div class="relative">
           @if (about()?.main_image) {
             <img [appMediaUrl]="about()!.main_image" alt="KOI Kitchen"
-              class="relative z-10 rounded-[3rem] shadow-2xl object-cover w-full md:w-[592px] md:h-[473px] lg:w-[720px] lg:h-[576px]" />
+              class="relative z-10 rounded-[3rem] shadow-2xl object-cover w-full md:w-148 md:h-118.25 lg:w-180 lg:h-144" />
           }
         </div>
       </div>

@@ -6,10 +6,11 @@ import { Title, Meta } from '@angular/platform-browser';
 import { MainHeader } from '../../shared/components/main-header/main-header';
 import { MenuService } from './services/menu.service';
 import { environment } from '../../../environments/environment';
+import { LoadingScreen } from "../../shared/components/loading-screen/loading-screen";
 
 @Component({
   selector: 'app-menu',
-  imports: [CommonModule, TranslateModule, PdfViewerModule, MainHeader],
+  imports: [CommonModule, TranslateModule, PdfViewerModule, MainHeader, LoadingScreen],
   templateUrl: './menu.html',
 })
 export class MenuComponent {
@@ -18,6 +19,7 @@ export class MenuComponent {
   private readonly metaService = inject(Meta);
 
   readonly menuData = computed(() => this.menuService.menuDataResource.value());
+  readonly isLoading = computed(() => this.menuService.menuDataResource.isLoading());
   
   readonly pdfSrc = computed(() => {
     const url = this.menuData()?.menu?.url;
