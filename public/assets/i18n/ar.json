@@ -35,5 +35,48 @@
     "FOLLOW_US": "تابعنا",
     "COPYRIGHT": "جميع الحقوق محفوظة ل",
     "PRIVACY_POLICY": "سياسة الخصوصيه"
+  },
+  "MENU": {
+    "TITLE": "قائمة الطعام",
+    "DISCOVER": "اكتشف المذاق الرائع",
+    "SUBTITLE": "استكشف تشكيلتنا الواسعة من السوشي المصنوع يدويًا والمقبلات ولفائف السوشي المميزة."
+  },
+  "BRANCHES": {
+    "TITLE": "فروعنا",
+    "FIND_US": "ابحث عن أقرب فرع لك",
+    "PHONE": "الهاتف",
+    "GET_DIRECTIONS": "الحصول على الاتجاهات"
+  },
+  "CONTACT": {
+    "TITLE": "اتصل بنا",
+    "GET_IN_TOUCH": "تواصل معنا",
+    "SUBTITLE": "هل لديك سؤال أو استفسار؟ يسعدنا تواصلك معنا.",
+    "PHONE": "الهاتف",
+    "EMAIL": "البريد الإلكتروني",
+    "ADDRESS": "العنوان",
+    "FORM": {
+      "NAME_LABEL": "الاسم الكامل",
+      "NAME_PLACEHOLDER": "جون دو",
+      "EMAIL_LABEL": "البريد الإلكتروني",
+      "EMAIL_PLACEHOLDER": "john@example.com",
+      "PHONE_LABEL": "رقم الهاتف",
+      "PHONE_PLACEHOLDER": "+20 123 456 7890",
+      "MESSAGE_LABEL": "الرسالة",
+      "MESSAGE_PLACEHOLDER": "اكتب رسالتك هنا...",
+      "SUBMIT": "إرسال الرسالة",
+      "SUBMITTING": "جاري الإرسال..."
+    },
+    "SUCCESS_TITLE": "تم الإرسال بنجاح!",
+    "SUCCESS_MESSAGE": "شكرًا لتواصلك معنا. تم تنفيذ طلبك بنجاح.",
+    "SUCCESS_CLOSE": "تم",
+    "ERRORS": {
+      "NAME_REQUIRED": "الاسم مطلوب.",
+      "NAME_MINLENGTH": "يجب أن يكون الاسم 3 أحرف على الأقل.",
+      "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب.",
+      "EMAIL_INVALID": "يرجى إدخال بريد إلكتروني صحيح.",
+      "PHONE_REQUIRED": "رقم الهاتف مطلوب.",
+      "PHONE_INVALID": "يجب أن يكون رقماً مصرياً صحيحاً (11 رقم يبدأ بـ 010 أو 011 أو 012 أو 015).",
+      "MESSAGE_REQUIRED": "الرسالة مطلوبة."
+    }
   }
 }

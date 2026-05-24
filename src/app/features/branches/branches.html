@@ -3,7 +3,7 @@
 }
 <div class="pt-24 pb-24 bg-light min-h-screen">
   <div class="container mx-auto px-4">
-    <app-main-header mainTitle="Find Us Near You" subTitle="Our Locations" />
+    <app-main-header [mainTitle]="'BRANCHES.FIND_US' | translate" [subTitle]="'BRANCHES.TITLE' | translate" />
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
       @for (branch of branches(); track branch.id) {
       <div
@@ -29,7 +29,7 @@
               <div class="flex items-start gap-3">
                 <p class="text-dark/60 leading-relaxed">{{ branch.address }}</p>
               </div>
-              <h4 class="text-lg font-bold text-dark">Phone</h4>
+              <h4 class="text-lg font-bold text-dark">{{ 'BRANCHES.PHONE' | translate }}</h4>
               @for(phone of branch.activephones; track phone.branch_id) {
               <a [href]="'tel:' + phone.phone.replaceAll(' ', '')" class="hover:text-primary transition-colors block">{{
                 phone.phone }}</a>
@@ -42,7 +42,7 @@
 
           <a [href]="branch.map_url" target="_blank"
             class="flex items-center justify-center gap-2 bg-dark text-light py-4 rounded-2xl font-bold hover:bg-primary transition-colors group/btn">
-            <span>Get Directions</span>
+            <span>{{ 'BRANCHES.GET_DIRECTIONS' | translate }}</span>
           </a>
         </div>
       </div>

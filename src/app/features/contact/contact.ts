@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
+import { Router, RouterOutlet } from '@angular/router';
 import { SocialService } from '../../shared/services/social.service';
+import { ContactStateService } from './contact-state.service';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'app-contact',
-  imports: [CommonModule, TranslateModule, ReactiveFormsModule],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule, RouterOutlet],
   templateUrl: './contact.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -18,30 +21,33 @@ export class ContactComponent {
   private readonly socialService = inject(SocialService);
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
+  private readonly router = inject(Router);
+  private readonly contactStateService = inject(ContactStateService);
+  private readonly languageService = inject(LanguageService);
   readonly contactData = [
     {
-      icon:'/assets/icons/phone.svg',
-      label:'phone',
-      value:'01060206736'
+      icon: '/assets/icons/phone.svg',
+      label: 'phone',
+      value: '01060206736'
     },
     {
-      icon:'/assets/icons/phone.svg',
-      label:'email',
-      value:'hello@koisushi.com'
+      icon: '/assets/icons/phone.svg',
+      label: 'email',
+      value: 'hello@koisushi.com'
     },
     {
-      icon:'/assets/icons/phone.svg',
-      label:'phone',
-      value:'01060206736'
+      icon: '/assets/icons/phone.svg',
+      label: 'phone',
+      value: '01060206736'
     },
   ]
   readonly socialData = computed(() => this.socialService.socialDataResource.value());
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^01[0125]\d{8}$/)]],
       message: ['', Validators.required],
     });
 
@@ -63,7 +69,9 @@ export class ContactComponent {
       this.isSubmitting = true;
       this.socialService.submitLead(this.contactForm.value).subscribe({
         next: () => {
-          alert('Message sent successfully!');
+          this.contactStateService.setSubmitted(true);
+          const lang = this.languageService.currentLang();
+          this.router.navigate([`/${lang}/contact/done`]);
           this.contactForm.reset();
           this.isSubmitting = false;
         },

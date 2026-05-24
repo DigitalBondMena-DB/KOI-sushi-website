@@ -5,9 +5,9 @@
   <div class="container mx-auto px-4">
     <!-- Header -->
     <div class="text-center mb-12 space-y-4">
-      <app-main-header mainTitle="Discover Deliciousness" subTitle="Our Menu" />
+      <app-main-header [mainTitle]="'MENU.DISCOVER' | translate" [subTitle]="'MENU.TITLE' | translate" />
       <p class="text-dark/50 max-w-lg mx-auto">
-        Explore our wide variety of handcrafted sushi, appetizers, and signature rolls.
+        {{ 'MENU.SUBTITLE' | translate }}
       </p>
     </div>
 

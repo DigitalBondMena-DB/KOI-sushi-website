@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { langGuard } from './core/guards/lang.guard';
 import { HomeComponent } from './features/home/home';
+import { contactDoneGuard } from './core/guards/contact-done.guard';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,13 @@ export const routes: Routes = [
       {
         path: 'contact',
         loadComponent: () => import('./features/contact/contact').then((m) => m.ContactComponent),
+        children: [
+          {
+            path: 'done',
+            loadComponent: () => import('./features/contact/done/done').then((m) => m.ContactDoneComponent),
+            canActivate: [contactDoneGuard],
+          }
+        ]
       },
       {
         path: 'privacy',

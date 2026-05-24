@@ -35,5 +35,48 @@
     "FOLLOW_US": "Follow Us",
     "COPYRIGHT": "All rights reserved for",
     "PRIVACY_POLICY": "privacy policy"
+  },
+  "MENU": {
+    "TITLE": "Our Menu",
+    "DISCOVER": "Discover Deliciousness",
+    "SUBTITLE": "Explore our wide variety of handcrafted sushi, appetizers, and signature rolls."
+  },
+  "BRANCHES": {
+    "TITLE": "Our Locations",
+    "FIND_US": "Find Us Near You",
+    "PHONE": "Phone",
+    "GET_DIRECTIONS": "Get Directions"
+  },
+  "CONTACT": {
+    "TITLE": "Contact Us",
+    "GET_IN_TOUCH": "Get In Touch",
+    "SUBTITLE": "Have a question or feedback? We'd love to hear from you.",
+    "PHONE": "Phone",
+    "EMAIL": "Email",
+    "ADDRESS": "Address",
+    "FORM": {
+      "NAME_LABEL": "Full Name",
+      "NAME_PLACEHOLDER": "John Doe",
+      "EMAIL_LABEL": "Email Address",
+      "EMAIL_PLACEHOLDER": "john@example.com",
+      "PHONE_LABEL": "Phone",
+      "PHONE_PLACEHOLDER": "+20 123 456 7890",
+      "MESSAGE_LABEL": "Message",
+      "MESSAGE_PLACEHOLDER": "Write your message here...",
+      "SUBMIT": "Send Message",
+      "SUBMITTING": "Sending..."
+    },
+    "SUCCESS_TITLE": "Message Sent Successfully!",
+    "SUCCESS_MESSAGE": "Thank you for reaching out. Your request has been submitted successfully.",
+    "SUCCESS_CLOSE": "Done",
+    "ERRORS": {
+      "NAME_REQUIRED": "Name is required.",
+      "NAME_MINLENGTH": "Name must be at least 3 characters.",
+      "EMAIL_REQUIRED": "Email is required.",
+      "EMAIL_INVALID": "Please enter a valid email address.",
+      "PHONE_REQUIRED": "Phone number is required.",
+      "PHONE_INVALID": "Must be a valid Egyptian number (11 digits starting with 010, 011, 012, or 015).",
+      "MESSAGE_REQUIRED": "Message is required."
+    }
   }
 }
