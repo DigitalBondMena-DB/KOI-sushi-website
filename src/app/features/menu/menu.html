@@ -13,7 +13,7 @@
 
     <!-- Viewer Container -->
     @if (menuUrl()) {
-    <div class="bg-dark/5 rounded-3xl overflow-hidden min-h-150 relative border-4 border-white shadow-2xl h-200">
+    <div class="bg-dark/5 rounded-3xl overflow-hidden relative border-4 border-white shadow-2xl h-150 md:h-200">
       <img class="size-16 rounded absolute inset-e-3 top-3 m-auto z-10" width="40" height="40"
         src="assets/images/koi-logo.jpg" alt="" role="presentation">
       <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(menuUrl())"

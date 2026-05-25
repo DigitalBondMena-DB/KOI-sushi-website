@@ -4,7 +4,7 @@
 <div class="pt-24 pb-24 bg-light min-h-screen">
   <div class="container mx-auto px-4">
     <app-main-header [mainTitle]="'BRANCHES.FIND_US' | translate" [subTitle]="'BRANCHES.TITLE' | translate" />
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">
       @for (branch of branches(); track branch.id) {
       <div
         class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl shadow-dark/5 flex flex-col border border-dark/5 hover:shadow-2xl transition-all duration-500 group">

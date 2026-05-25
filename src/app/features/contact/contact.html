@@ -1,4 +1,4 @@
-<div class="pt-24 pb-16 bg-light min-h-screen">
+<div class="pt-24 pb-16 bg-light">
   <div class="container mx-auto px-4">
     <div class="max-w-6xl mx-auto">
       @if (socialData(); as data) {
@@ -14,19 +14,8 @@
 
           <div class="space-y-6">
 
-            <div class="flex items-center space-x-4 rtl:space-x-reverse">
-              <div
-                class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5">
-                <img src="/assets/icons/phone.svg" width="24" height="24" alt="" role="presentation" loading="lazy"
-                  decoding="async">
-              </div>
-              <div>
-                <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">{{ 'CONTACT.PHONE' | translate }}
-                </p>
-                <p class="text-lg font-bold text-dark">{{ data.phones[0].phone }}</p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+            @if(data.contactus.email){
+            <div class="flex items-center gap-x-4">
               <div
                 class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5">
                 <img src="/assets/icons/email.svg" width="24" height="24" alt="" role="presentation" loading="lazy"
@@ -35,10 +24,14 @@
               <div>
                 <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">{{ 'CONTACT.EMAIL' | translate }}
                 </p>
-                <p class="text-lg font-bold text-dark">{{ data.contactus.email }}</p>
+                <a [href]="'mailto:' + data.contactus.email"
+                  class="text-lg font-bold text-dark hover:text-primary transition-colors duration-300">{{
+                  data.contactus.email }}</a>
               </div>
             </div>
-            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+            }
+            @if(data.contactus.address){
+            <div class="flex items-center gap-x-4">
               <div
                 class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5">
                 <img src="/assets/icons/location.svg" width="24" height="24" alt="" role="presentation" loading="lazy"
@@ -50,6 +43,28 @@
                 <p class="text-lg font-bold text-dark">{{ data.contactus.address }}</p>
               </div>
             </div>
+            }
+            @if(isArray(data.phones)){
+            <div class="flex gap-x-4">
+              <div
+                class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg shadow-dark/5">
+                <img src="/assets/icons/phone.svg" width="24" height="24" alt="" role="presentation" loading="lazy"
+                  decoding="async">
+              </div>
+              <div>
+                <p class="text-xs text-dark/40 uppercase font-bold tracking-widest">{{ 'CONTACT.PHONE' | translate }}
+                </p>
+                <div class="flex flex-col gap-1">
+                  @for (phone of data.phones; track $index) {
+                  <a [href]="'tel:' + phone.phone"
+                    class="text-md font-bold text-dark hover:text-primary transition-colors duration-300">{{ phone.phone
+                    }}</a>
+                  }
+                </div>
+              </div>
+            </div>
+            }
+
           </div>
         </div>
 
@@ -63,14 +78,15 @@
                 <input type="text" formControlName="name"
                   class="w-full  bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
                   [placeholder]="'CONTACT.FORM.NAME_PLACEHOLDER' | translate" />
-                @if (contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty || contactForm.get('name')?.touched)) {
-                  <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
-                    @if (contactForm.get('name')?.errors?.['required']) {
-                      {{ 'CONTACT.ERRORS.NAME_REQUIRED' | translate }}
-                    } @else if (contactForm.get('name')?.errors?.['minlength']) {
-                      {{ 'CONTACT.ERRORS.NAME_MINLENGTH' | translate }}
-                    }
-                  </span>
+                @if (contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty ||
+                contactForm.get('name')?.touched)) {
+                <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
+                  @if (contactForm.get('name')?.errors?.['required']) {
+                  {{ 'CONTACT.ERRORS.NAME_REQUIRED' | translate }}
+                  } @else if (contactForm.get('name')?.errors?.['minlength']) {
+                  {{ 'CONTACT.ERRORS.NAME_MINLENGTH' | translate }}
+                  }
+                </span>
                 }
               </div>
               <div class="space-y-2 relative">
@@ -79,14 +95,15 @@
                 <input type="email" formControlName="email"
                   class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
                   [placeholder]="'CONTACT.FORM.EMAIL_PLACEHOLDER' | translate" />
-                @if (contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)) {
-                  <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
-                    @if (contactForm.get('email')?.errors?.['required']) {
-                      {{ 'CONTACT.ERRORS.EMAIL_REQUIRED' | translate }}
-                    } @else if (contactForm.get('email')?.errors?.['email']) {
-                      {{ 'CONTACT.ERRORS.EMAIL_INVALID' | translate }}
-                    }
-                  </span>
+                @if (contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty ||
+                contactForm.get('email')?.touched)) {
+                <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
+                  @if (contactForm.get('email')?.errors?.['required']) {
+                  {{ 'CONTACT.ERRORS.EMAIL_REQUIRED' | translate }}
+                  } @else if (contactForm.get('email')?.errors?.['email']) {
+                  {{ 'CONTACT.ERRORS.EMAIL_INVALID' | translate }}
+                  }
+                </span>
                 }
               </div>
             </div>
@@ -97,14 +114,15 @@
               <input type="text" formControlName="phone"
                 class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
                 [placeholder]="'CONTACT.FORM.PHONE_PLACEHOLDER' | translate" />
-              @if (contactForm.get('phone')?.invalid && (contactForm.get('phone')?.dirty || contactForm.get('phone')?.touched)) {
-                <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
-                  @if (contactForm.get('phone')?.errors?.['required']) {
-                    {{ 'CONTACT.ERRORS.PHONE_REQUIRED' | translate }}
-                  } @else if (contactForm.get('phone')?.errors?.['pattern']) {
-                    {{ 'CONTACT.ERRORS.PHONE_INVALID' | translate }}
-                  }
-                </span>
+              @if (contactForm.get('phone')?.invalid && (contactForm.get('phone')?.dirty ||
+              contactForm.get('phone')?.touched)) {
+              <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
+                @if (contactForm.get('phone')?.errors?.['required']) {
+                {{ 'CONTACT.ERRORS.PHONE_REQUIRED' | translate }}
+                } @else if (contactForm.get('phone')?.errors?.['pattern']) {
+                {{ 'CONTACT.ERRORS.PHONE_INVALID' | translate }}
+                }
+              </span>
               }
             </div>
 
@@ -114,10 +132,11 @@
               <textarea formControlName="message" rows="5"
                 class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
                 [placeholder]="'CONTACT.FORM.MESSAGE_PLACEHOLDER' | translate"></textarea>
-              @if (contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched)) {
-                <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
-                  {{ 'CONTACT.ERRORS.MESSAGE_REQUIRED' | translate }}
-                </span>
+              @if (contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty ||
+              contactForm.get('message')?.touched)) {
+              <span class="absolute top-full start-2 text-xs text-primary pt-1 animate-fade-in">
+                {{ 'CONTACT.ERRORS.MESSAGE_REQUIRED' | translate }}
+              </span>
               }
             </div>
 

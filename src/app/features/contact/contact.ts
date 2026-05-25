@@ -76,4 +76,7 @@ export class ContactComponent {
       });
     }
   }
+  isArray(item: any): boolean {
+    return Array.isArray(item)
+  }
 }
