@@ -6,7 +6,7 @@ import { GallerySection } from './components/gallery-section/gallery-section';
 import { isPlatformBrowser } from '@angular/common';
 import { AboutSection } from '../../shared/components/about-section/about-section';
 import { HomeService } from './services/home.service';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from '../../core/services/seo.service';
 import { LoadingScreen } from "../../shared/components/loading-screen/loading-screen";
 
 @Component({
@@ -17,8 +17,7 @@ import { LoadingScreen } from "../../shared/components/loading-screen/loading-sc
 })
 export class HomeComponent {
   private readonly homeService = inject(HomeService);
-  private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+  private readonly seoService = inject(SeoService);
 
   // Exposing the home data signal
   readonly homeData = computed(() => this.homeService.homeDataResource.value());
@@ -33,12 +32,10 @@ export class HomeComponent {
       });
     }
 
-    // Effect to update SEO when data changes
     effect(() => {
       const data = this.homeData();
       if (data?.seo) {
-        this.title.setTitle(data.seo.title);
-        this.meta.updateTag({ name: 'description', content: data.seo.description });
+        this.seoService.updateSeo(data.seo);
       }
     });
   }

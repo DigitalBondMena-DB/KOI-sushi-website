@@ -6,24 +6,27 @@
         <h3 class="text-4xl md:text-5xl font-bold text-dark line-clamp-2" [title]="about()?.title">
           {{ about()?.title }}
         </h3>
-        <div class="text-dark/60 text-lg leading-relaxed" [innerHTML]="about()?.description | safeHtml">
+        <div class="text-dark/60 text-lg leading-relaxed max-h-25 overflow-y-auto"
+          [innerHTML]="about()?.description | safeHtml">
         </div>
         <div class="grid grid-cols-2 gap-8 pt-8 border-t border-dark/5">
           <div>
             <span aria-labelledby="state-1" class="text-3xl font-bold text-primary mb-2">100%</span>
-            <h4 id="state-1"  class="text-sm text-dark/40 uppercase tracking-widest font-bold line-clamp-1" title="Fresh Daily">Fresh Daily</h4>
+            <h4 id="state-1" class="text-sm text-dark/40 uppercase tracking-widest font-bold line-clamp-1"
+              title="Fresh Daily">Fresh Daily</h4>
           </div>
           <div>
-            <span class="text-3xl font-bold text-primary mb-2"  aria-labelledby="state-2">25+</span>
-            <h4 class="text-sm text-dark/40 uppercase tracking-widest font-bold" id="state-2" title="Master Chefs">Master Chefs</h4>
+            <span class="text-3xl font-bold text-primary mb-2" aria-labelledby="state-2">25+</span>
+            <h4 class="text-sm text-dark/40 uppercase tracking-widest font-bold" id="state-2" title="Master Chefs">
+              Master Chefs</h4>
           </div>
         </div>
       </div>
       <div class="order-1 md:order-2">
         <div class="relative">
           @if (about()?.main_image) {
-            <img [appMediaUrl]="about()!.main_image" alt="KOI Kitchen"
-              class="relative z-10 rounded-[3rem] shadow-2xl object-cover w-full md:w-148 md:h-118.25 lg:w-180 lg:h-144" />
+          <img [appMediaUrl]="about()!.main_image" alt="KOI Kitchen"
+            class="relative z-10 rounded-[3rem] shadow-2xl object-cover w-full md:w-148 md:h-118.25 lg:w-180 lg:h-144" />
           }
         </div>
       </div>

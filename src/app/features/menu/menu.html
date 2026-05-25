@@ -11,25 +11,14 @@
       </p>
     </div>
 
-    <!-- PDF Viewer Controls -->
-    <div
-      class="bg-white rounded-2xl shadow-xl shadow-dark/5 p-4 mb-8 flex flex-wrap items-center justify-between gap-4 sticky top-24 z-30 border border-dark/5">
-      <div class="flex items-center gap-2">
-        <button (click)="zoomOut()" class="p-2 hover:bg-light rounded-lg transition-colors text-dark/70">
-          <!-- <lucide-icon [name]="icons.zoomOut" size="20"></lucide-icon> -->
-        </button>
-        <span class="text-sm font-bold text-dark w-12 text-center">{{ (zoom() * 100).toFixed(0) }}%</span>
-        <button (click)="zoomIn()" class="p-2 hover:bg-light rounded-lg transition-colors text-dark/70">
-          <!-- <lucide-icon [name]="icons.zoomIn" size="20"></lucide-icon> -->
-        </button>
-      </div>
-    </div>
-
     <!-- Viewer Container -->
-    @if (pdfSrc()) {
-    <div class="bg-dark/5 rounded-3xl overflow-hidden min-h-[600px] relative border-4 border-white shadow-2xl">
-      <pdf-viewer [src]="pdfSrc()" [render-text]="true" [original-size]="false" [zoom]="zoom()"
-        style="width: 100%; height: 800px" class="animate-fade-in"></pdf-viewer>
+    @if (menuUrl()) {
+    <div class="bg-dark/5 rounded-3xl overflow-hidden min-h-150 relative border-4 border-white shadow-2xl h-200">
+      <img class="size-16 rounded absolute inset-e-3 top-3 m-auto z-10" width="40" height="40"
+        src="assets/images/koi-logo.jpg" alt="" role="presentation">
+      <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(menuUrl())"
+        class="w-full h-full border-none animate-fade-in" allow="autoplay">
+      </iframe>
     </div>
     } @else {
     <div class="flex justify-center items-center h-64">

@@ -12,4 +12,5 @@ import { SafeHtmlPipe } from '../../pipes/safe-html-pipe';
 })
 export class AboutSection {
   about = input<AboutHome>();
+
 }

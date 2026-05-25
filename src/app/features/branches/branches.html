@@ -30,7 +30,7 @@
                 <p class="text-dark/60 leading-relaxed">{{ branch.address }}</p>
               </div>
               <h4 class="text-lg font-bold text-dark">{{ 'BRANCHES.PHONE' | translate }}</h4>
-              @for(phone of branch.activephones; track phone.branch_id) {
+              @for(phone of branch.activephones; track $index) {
               <a [href]="'tel:' + phone.phone.replaceAll(' ', '')" class="hover:text-primary transition-colors block">{{
                 phone.phone }}</a>
               }

@@ -1,14 +1,14 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { PrivacyService } from './services/privacy.service';
 import { SafeHtmlPipe } from '../../shared/pipes/safe-html-pipe';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-privacy',
   standalone: true,
-  imports: [CommonModule, TranslateModule,SafeHtmlPipe],
+  imports: [CommonModule, TranslateModule, SafeHtmlPipe],
   template: `
     <div class="pt-24 pb-24 bg-light min-h-screen">
       <div class="container mx-auto px-4 max-w-4xl">
@@ -40,21 +40,17 @@ import { SafeHtmlPipe } from '../../shared/pipes/safe-html-pipe';
 })
 export class PrivacyComponent {
   private readonly privacyService = inject(PrivacyService);
-  private readonly titleService = inject(Title);
-  private readonly metaService = inject(Meta);
+  private readonly seoService = inject(SeoService);
 
-  readonly privacyData = computed(() => this.privacyService.privacyDataResource.value());
+  readonly privacyData = computed(() => {
+    return this.privacyService.privacyDataResource.value()
+  });
 
   constructor() {
     effect(() => {
       const data = this.privacyData();
       if (data?.seo) {
-        if (data.seo.title) {
-          this.titleService.setTitle(data.seo.title);
-        }
-        if (data.seo.description) {
-          this.metaService.updateTag({ name: 'description', content: data.seo.description });
-        }
+        this.seoService.updateSeo(data.seo);
       }
     });
   }
