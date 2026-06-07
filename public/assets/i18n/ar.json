@@ -28,7 +28,7 @@
       "SUB_TITLE": "وليمة بصرية"
     }
   },
-  "OUR_STORY":"عن قصتنا",
+  "OUR_STORY": "عن قصتنا",
   "FOOTER": {
     "QUICK_LINKS": "روابط سريعة",
     "SUPPORT": "الدعم",
@@ -56,11 +56,11 @@
     "ADDRESS": "العنوان",
     "FORM": {
       "NAME_LABEL": "الاسم الكامل",
-      "NAME_PLACEHOLDER": "جون دو",
+      "NAME_PLACEHOLDER": "الاسم بالكامل",
       "EMAIL_LABEL": "البريد الإلكتروني",
-      "EMAIL_PLACEHOLDER": "john@example.com",
+      "EMAIL_PLACEHOLDER": "البريد الإلكتروني",
       "PHONE_LABEL": "رقم الهاتف",
-      "PHONE_PLACEHOLDER": "+20 123 456 7890",
+      "PHONE_PLACEHOLDER": "رقم الهاتف",
       "MESSAGE_LABEL": "الرسالة",
       "MESSAGE_PLACEHOLDER": "اكتب رسالتك هنا...",
       "SUBMIT": "إرسال الرسالة",

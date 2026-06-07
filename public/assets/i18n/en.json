@@ -28,7 +28,7 @@
       "SUB_TITLE": "Visual Feast"
     }
   },
-  "OUR_STORY" : "Our Story",
+  "OUR_STORY": "Our Story",
   "FOOTER": {
     "QUICK_LINKS": "QUICK LINKS",
     "SUPPORT": "SUPPORT",
@@ -56,11 +56,11 @@
     "ADDRESS": "Address",
     "FORM": {
       "NAME_LABEL": "Full Name",
-      "NAME_PLACEHOLDER": "John Doe",
+      "NAME_PLACEHOLDER": "Full Name",
       "EMAIL_LABEL": "Email Address",
-      "EMAIL_PLACEHOLDER": "john@example.com",
+      "EMAIL_PLACEHOLDER": "Email Address",
       "PHONE_LABEL": "Phone",
-      "PHONE_PLACEHOLDER": "+20 123 456 7890",
+      "PHONE_PLACEHOLDER": "Phone Number",
       "MESSAGE_LABEL": "Message",
       "MESSAGE_PLACEHOLDER": "Write your message here...",
       "SUBMIT": "Send Message",
