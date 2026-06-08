@@ -7,12 +7,14 @@
     </a>
 
     <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center gap-8">
+    <div class="hidden md:flex gap-8">
       @for (item of navItems; track $index) {
-      <a [routerLink]="'/' + currentLang() + item.path" routerLinkActive="text-primary"
+      <a [routerLink]="'/' + currentLang() + item.path" routerLinkActive="text-primary [&_img]:block"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="text-light hover:text-primary transition-colors font-medium text-sm uppercase tracking-wider">
+        class="text-light relative hover:text-primary transition-colors font-medium text-sm uppercase tracking-wider">
         {{ item.label | translate }}
+        <img src="/assets/icons/stick.svg" width="25" height="25" loading="lazy" decoding="async" alt=""
+          role="presentation" class="left-1/2 -translate-x-1/2 absolute top-full hidden">
       </a>
       }
     </div>

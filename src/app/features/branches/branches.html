@@ -1,7 +1,10 @@
 @if(isLoading()) {
 <app-loading-screen />
 }
-<div class="pt-24 pb-24 bg-light min-h-screen">
+<div class="pt-24 pb-24 bg-light min-h-screen relative z-10">
+  <img src="/assets/images/shared/main-white-bg.svg" alt="" role="presentation"
+    class="absolute inset-0 w-full h-full object-cover -z-10 opacity-10 pointer-events-none" loading="lazy"
+    decoding="async">
   <div class="container mx-auto px-4">
     <app-main-header [mainTitle]="'BRANCHES.FIND_US' | translate" [subTitle]="'BRANCHES.TITLE' | translate" />
     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">

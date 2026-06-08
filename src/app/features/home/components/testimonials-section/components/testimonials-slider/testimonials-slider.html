@@ -10,7 +10,7 @@
           }
         </div>
       </div>
-      <div class="text-dark/70 text-lg italic mb-8 line-clamp-1"  [innerHtml]="item.comment | safeHtml"></div>
+      <div class="text-dark/70 text-lg italic mb-8 line-clamp-1" [innerHtml]="item.comment | safeHtml"></div>
       <div class="flex items-center space-x-4">
         <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold ">
           {{ item.title?.[0] ?? 'U' }}
@@ -19,6 +19,8 @@
           <h5 class="font-bold text-dark line-clamp-1" [title]="item.title">{{ item.title }}</h5>
         </div>
       </div>
+      <img src="/assets/images/testimonials/testimonial-card-sushi.webp" alt="" role="presentation" width="63"
+        height="55" loading="lazy" decoding="async" class="absolute bottom-0 inset-e-0 cursor-none">
     </div>
   </swiper-slide>
   }
