@@ -1,9 +1,10 @@
-   @if (isLoading()) {
-   <app-loading-screen/>
+@if (isLoading()) {
+<app-loading-screen />
 }
-  <app-hero-section [slides]="homeData()?.hero ?? []" />
-  <app-about-section [about]="homeData()?.about" />
-  <app-best-sellers-section [bestSellers]="homeData()?.bestSellers ?? []" />
-  <app-testimonials-section [reviews]="homeData()?.testimonials ?? []" />
-  <app-gallery-section [galleryImages]="homeData()?.gallery ?? []" />
+<app-hero-section [slides]="homeData()?.hero ?? []" />
+<app-about-section [about]="homeData()?.about" />
+<app-best-sellers-section [bestSellers]="homeData()?.bestSellers ?? []" />
 
+<app-testimonials-section [reviews]="homeData()?.testimonials ?? []" />
+
+<app-gallery-section [galleryImages]="homeData()?.gallery ?? []" />

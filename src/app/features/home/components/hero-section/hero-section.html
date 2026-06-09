@@ -1,6 +1,6 @@
 <section class="relative min-h-screen overflow-hidden">
   <swiper-container loop="true" pagination="true" pagination-clickable="true" autoplay-delay="5000"
-    autoplay-disable-on-interaction="false" speed="700" effect="fade" class="w-full h-full theme-light-bullets">
+    autoplay-disable-on-interaction="false" speed="700" effect="fade" fade-effect-cross-fade="true" observer="true" observe-parents="true" class="w-full h-full theme-light-bullets">
     @for (slide of slides(); track slide.id) {
     <swiper-slide>
       <div class="relative h-screen w-full cursor-grab">
