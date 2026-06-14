@@ -6,6 +6,11 @@ import { SafeHtmlPipe } from '../../../../../../shared/pipes/safe-html-pipe';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [SafeHtmlPipe],
   templateUrl: './testimonials-slider.html',
+  styles: `
+    :host  ::ng-deep {
+--swiper-pagination-bullet-horizontal-gap:10px;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestimonialsSlider {

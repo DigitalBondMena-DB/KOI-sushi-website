@@ -36,7 +36,8 @@
       </a>
 
       <!-- Mobile Toggle -->
-      <button (click)="toggleMobileMenu()" class="md:hidden text-light p-2">
+      <button (click)="toggleMobileMenu()" class="md:hidden text-light p-2"
+        [attr.aria-label]="isMenuOpen() ? 'Close' : 'Open'">
         @if (!isMenuOpen()) {
         <div class="flex flex-col mx-auto gap-1 w-4.5">
           <div class="h-0.5 bg-light"></div>

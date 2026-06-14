@@ -16,11 +16,7 @@ export class AboutComponent {
   private readonly aboutService = inject(AboutService);
   private readonly seoService = inject(SeoService);
 
-  readonly aboutData = computed(() => {
-    console.log(this.aboutService.aboutDataResource.value());
-
-    return this.aboutService.aboutDataResource.value()
-  });
+  readonly aboutData = computed(() => this.aboutService.aboutDataResource.value());
   readonly isLoading = computed(() => this.aboutService.aboutDataResource.isLoading());
 
   constructor() {
