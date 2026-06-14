@@ -13,16 +13,13 @@
           [innerHTML]="about()?.description | safeHtml">
         </div>
         <div class="grid grid-cols-2 gap-8 pt-8 border-t border-dark/5">
+          @for (item of about()?.numbers; track $index) {
           <div>
-            <span aria-labelledby="state-1" class="text-3xl font-bold text-primary mb-2">100%</span>
+            <span aria-labelledby="state-1" class="text-3xl font-bold text-primary mb-2">{{item.number}}+</span>
             <h4 id="state-1" class="text-sm text-dark/40 uppercase tracking-widest font-bold line-clamp-1"
-              title="Fresh Daily">Fresh Daily</h4>
+              [title]="item.text">{{item.text}}</h4>
           </div>
-          <div>
-            <span class="text-3xl font-bold text-primary mb-2" aria-labelledby="state-2">25+</span>
-            <h4 class="text-sm text-dark/40 uppercase tracking-widest font-bold" id="state-2" title="Master Chefs">
-              Master Chefs</h4>
-          </div>
+          }
         </div>
       </div>
       <div class="order-1 lg:order-2">

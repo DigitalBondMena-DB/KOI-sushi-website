@@ -1,3 +1,5 @@
+import { AboutNumbers } from "../../about/interfaces/about-api-response.interface";
+
 export interface HomeApiResponse {
   success: boolean;
   data: HomeData;
@@ -25,6 +27,7 @@ export interface AboutHome {
   title: string;
   description: string;
   main_image: string;
+  numbers: AboutNumbers[];
 }
 
 export interface BestSeller {

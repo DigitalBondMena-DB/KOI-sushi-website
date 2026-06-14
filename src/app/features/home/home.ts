@@ -20,7 +20,11 @@ export class HomeComponent {
   private readonly seoService = inject(SeoService);
 
   // Exposing the home data signal
-  readonly homeData = computed(() => this.homeService.homeDataResource.value());
+  readonly homeData = computed(() => {
+    console.log(this.homeService.homeDataResource.value());
+
+    return this.homeService.homeDataResource.value()
+  });
   readonly isLoading = computed(() => this.homeService.homeDataResource.isLoading());
   readonly error = computed(() => this.homeService.homeDataResource.error());
 

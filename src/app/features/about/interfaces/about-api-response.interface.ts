@@ -7,8 +7,14 @@ export interface AboutApiResponse {
 
 export interface AboutPageData {
   about: AboutHome;
+  numbers: AboutNumbers;
   story: StoryData;
   seo: SeoData;
+}
+
+export interface AboutNumbers {
+  text: string;
+  number: string;
 }
 
 export interface StoryData {
