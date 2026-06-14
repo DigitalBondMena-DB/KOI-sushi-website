@@ -75,7 +75,7 @@
               <div class="space-y-2 relative">
                 <label class="text-sm font-bold text-dark/60 ml-2 rtl:mr-2 rtl:ml-0">{{ 'CONTACT.FORM.NAME_LABEL' |
                   translate }}</label>
-                <input type="text" formControlName="name"
+                <input type="text" formControlName="name" (input)="onNameInput($event)"
                   class="w-full  bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
                   [placeholder]="'CONTACT.FORM.NAME_PLACEHOLDER' | translate" />
                 @if (contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty ||
@@ -85,6 +85,8 @@
                   {{ 'CONTACT.ERRORS.NAME_REQUIRED' | translate }}
                   } @else if (contactForm.get('name')?.errors?.['minlength']) {
                   {{ 'CONTACT.ERRORS.NAME_MINLENGTH' | translate }}
+                  } @else if (contactForm.get('name')?.errors?.['pattern']) {
+                  {{ 'CONTACT.ERRORS.NAME_INVALID' | translate }}
                   }
                 </span>
                 }
@@ -111,7 +113,7 @@
             <div class="space-y-2 relative">
               <label class="text-sm font-bold text-dark/60 ml-2 rtl:mr-2 rtl:ml-0">{{ 'CONTACT.FORM.PHONE_LABEL' |
                 translate }}</label>
-              <input type="text" formControlName="phone"
+              <input type="text" formControlName="phone" inputmode="tel" (input)="onPhoneInput($event)"
                 class="w-full bg-light border-none rounded-2xl p-4 text-dark focus:ring-2 focus:ring-primary/50 transition-all"
                 [placeholder]="'CONTACT.FORM.PHONE_PLACEHOLDER' | translate" />
               @if (contactForm.get('phone')?.invalid && (contactForm.get('phone')?.dirty ||

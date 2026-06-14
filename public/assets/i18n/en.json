@@ -72,6 +72,7 @@
     "ERRORS": {
       "NAME_REQUIRED": "Name is required.",
       "NAME_MINLENGTH": "Name must be at least 3 characters.",
+      "NAME_INVALID": "Name cannot contain numbers.",
       "EMAIL_REQUIRED": "Email is required.",
       "EMAIL_INVALID": "Please enter a valid email address.",
       "PHONE_REQUIRED": "Phone number is required.",

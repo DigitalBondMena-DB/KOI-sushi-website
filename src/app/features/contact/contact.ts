@@ -44,7 +44,7 @@ export class ContactComponent {
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[^\d\u0660-\u0669]*$/)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^01[0125]\d{8}$/)]],
       message: ['', Validators.required],
@@ -56,6 +56,48 @@ export class ContactComponent {
         this.seoService.updateSeo(data.seo);
       }
     });
+  }
+
+  onNameInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const selectionStart = input.selectionStart;
+    const originalValue = input.value;
+    const sanitized = originalValue.replace(/[0-9\u0660-\u0669]/g, '');
+
+    if (originalValue !== sanitized) {
+      input.value = sanitized;
+      this.contactForm.get('name')?.setValue(sanitized, { emitEvent: false });
+
+      const removedCount = originalValue.substring(0, selectionStart || 0).match(/[0-9\u0660-\u0669]/g)?.length || 0;
+      const newCursorPos = Math.max(0, (selectionStart || 0) - removedCount);
+      input.setSelectionRange(newCursorPos, newCursorPos);
+    }
+  }
+
+  onPhoneInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const selectionStart = input.selectionStart;
+    const originalValue = input.value;
+
+    const value = this.convertArabicToEnglishDigits(originalValue);
+    const sanitized = value.replace(/[^0-9]/g, '');
+
+    if (originalValue !== sanitized) {
+      input.value = sanitized;
+      this.contactForm.get('phone')?.setValue(sanitized, { emitEvent: false });
+
+      const digitsCountBeforeCursor = this.convertArabicToEnglishDigits(originalValue.substring(0, selectionStart || 0)).replace(/[^0-9]/g, '').length;
+      input.setSelectionRange(digitsCountBeforeCursor, digitsCountBeforeCursor);
+    } else if (originalValue !== value) {
+      input.value = value;
+      this.contactForm.get('phone')?.setValue(value, { emitEvent: false });
+      input.setSelectionRange(selectionStart, selectionStart);
+    }
+  }
+
+  private convertArabicToEnglishDigits(str: string): string {
+    const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    return str.replace(/[٠-٩]/g, (d) => arabicDigits.indexOf(d).toString());
   }
 
   onSubmit() {
