@@ -43,10 +43,7 @@ import { AngularAppEngine, createRequestHandler } from '@angular/ssr'
 import { getContext, getTrustProxyHeaders } from '@netlify/angular-runtime/app-engine.js'
 
 const angularAppEngine = new AngularAppEngine({
-  allowedHosts: [
-    'musical-hummingbird-d1ba98.netlify.app',
-    'localhost',
-  ],
+
   trustProxyHeaders: getTrustProxyHeaders(),
 });
 
