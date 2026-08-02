@@ -40,12 +40,15 @@
 
 // export const reqHandler = createNodeRequestHandler(app);
 import { AngularAppEngine, createRequestHandler } from '@angular/ssr'
-import { getAllowedHosts, getContext, getTrustProxyHeaders } from '@netlify/angular-runtime/app-engine.js'
+import { getContext, getTrustProxyHeaders } from '@netlify/angular-runtime/app-engine.js'
 
 const angularAppEngine = new AngularAppEngine({
-  allowedHosts: getAllowedHosts(),
+  allowedHosts: [
+    'musical-hummingbird-d1ba98.netlify.app',
+    'localhost',
+  ],
   trustProxyHeaders: getTrustProxyHeaders(),
-})
+});
 
 export async function netlifyAppEngineHandler(request: Request): Promise<Response> {
   const context = getContext()
